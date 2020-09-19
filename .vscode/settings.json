@@ -1,0 +1,9 @@
+{
+   "editor.tabSize": 3,
+   "emmet.includeLanguages": {
+      "javascript": "javascriptreact",
+      "vue-html": "html",
+      "razor": "html",
+      "plaintext": "pug"
+   }
+}

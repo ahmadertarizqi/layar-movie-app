@@ -1,0 +1,39 @@
+@import 'base/normalize';
+@import 'base/variables';
+
+html, body {
+   background-color: $dark-color;
+}
+
+html {
+   overflow-x: hidden;
+   overflow-y: auto;
+}
+
+body {
+   min-height: 100vh;
+   margin: 0;
+   color: $dark-text-color;
+}
+
+.main-wrapper {
+   max-width: calc(100% - 85px);
+   margin-left: 85px;
+   padding: 75px 40px 80px 40px;
+   transition: all 0.3s;
+}
+
+body.sidebar-closed .main-wrapper {
+   margin-left: 0;
+   max-width: 100%;
+}
+
+@media screen and (max-width: 769px) {
+   .main-wrapper {
+      max-width: 100%;
+      margin-left: 0;
+   }
+}
+
+@import 'components/Sidebar';
+@import 'components/Navbar';
