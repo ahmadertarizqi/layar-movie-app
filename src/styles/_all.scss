@@ -3,11 +3,32 @@
 }
 
 .tabs-custom { 
+   ul {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+   }
+
+   li {
+      &.is-active a {
+         border-bottom-color: #fff;
+         color: #fff;
+      }
+
+      &:not(:last-child) {
+         a {
+            margin-right: 25px;
+         }
+      }
+   }
+
    a {
+      padding: .5em 0;
       color: $dark-text-color;
+      border-bottom-color: transparent;
+      border-bottom-width: 2px;
       
       &:hover {
-         color: $dark-text-color;
+         color: #fff;
+         border-bottom-color: transparent;
       }
    }
 }

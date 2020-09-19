@@ -1,5 +1,24 @@
 import React from 'react';
-import { Link, Switch, Route, Redirect } from 'react-router-dom';
+import { Link, Switch, Route, Redirect, useLocation } from 'react-router-dom';
+
+const menuTabs = [
+   {
+      name: 'Now Playing',
+      link: '/nowplaying'
+   },
+   {
+      name: 'Popular',
+      link: '/popular'
+   },
+   {
+      name: 'Top Rated',
+      link: '/toprated'
+   },
+   {
+      name: 'Upcoming',
+      link: '/upcoming'
+   }
+];
 
 export default function Movies(props) {
    const { 
@@ -7,22 +26,23 @@ export default function Movies(props) {
       routes 
    } = props;
 
+   const location = useLocation();
+
+   const renderedMenuTabs = menuTabs.map(tabs => {
+      const currentUrl = location.pathname.split('/');
+      const isActive = (currentUrl[2] === tabs.link.substr(1)) ? 'is-active' : '';
+      return (
+         <li className={isActive} key={tabs.name}>
+            <Link to={`${path + tabs.link}`}>{tabs.name}</Link>
+         </li>
+      );
+   });
+
    return (
       <div className="movies-wrapper">
          <div className="tabs tabs-custom">
             <ul>
-               <li className="is-active">
-                  <Link to={`${path}/nowplaying`}>Now Playing</Link>
-               </li>
-               <li>
-                  <Link to={`${path}/popular`}>Popular</Link>
-               </li>
-               <li>
-                  <Link to={`${path}/toprated`}>Top Rated</Link>
-               </li>
-               <li>
-                  <Link to={`${path}/upcoming`}>Upcoming</Link>
-               </li>
+               {renderedMenuTabs}
             </ul>
          </div>
          <Switch>

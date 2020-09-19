@@ -31,9 +31,9 @@ body.sidebar-closed aside {
          flex-direction: column;
          justify-content: center;
          align-items: center;
-         padding: 0 10px;
+         padding: 10px 10px;
          font-size: 14px;
-         margin-bottom: 37px;
+         margin-bottom: 15px;
          text-decoration: none;
 
          svg {
@@ -42,6 +42,13 @@ body.sidebar-closed aside {
 
          span {
             display: inline-block;
+         }
+      }
+
+      &-item.is-active {
+         > a {
+            background-color: #ffffff1a;
+            color: #fff;
          }
       }
    }

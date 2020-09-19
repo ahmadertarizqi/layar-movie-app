@@ -1,4 +1,9 @@
 .card-poster {
+   .img-poster {
+      border-radius: 5px;
+      object-fit: cover;
+   }
+
    .cp-title {
       text-overflow: ellipsis;
       white-space: nowrap;
