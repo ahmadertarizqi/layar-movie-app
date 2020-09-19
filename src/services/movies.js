@@ -6,4 +6,9 @@ async function getMoviesNowPlaying() {
    return response;
 }
 
-export default { getMoviesNowPlaying };
+async function getMoviesPopular() {
+   const response = await getData(`${apiURL}/movie/popular`);
+   return response;
+}
+
+export default { getMoviesNowPlaying, getMoviesPopular };

@@ -70,6 +70,10 @@ body.sidebar-closed header {
       margin-left: 0;
    }
 
+   .navbar-wrapper {
+      padding: 0 15px;
+   }
+
    .navbar-action {
       &-left {
          .btn-side-toggle { display: none; }

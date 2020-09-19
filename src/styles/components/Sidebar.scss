@@ -50,7 +50,7 @@ body.sidebar-closed aside {
 @media screen and (max-width: 769px) {
    aside {
       width: 100%;
-      height: 50px;
+      height: 53px;
       bottom: 0;
       top: auto;
    }
@@ -68,6 +68,14 @@ body.sidebar-closed aside {
             flex-grow: 1;
             flex-shrink: 1;
             display: block;
+
+            > a {
+               padding: 7px 10px;
+
+               svg {
+                  margin-bottom: 0;
+               }
+            }
          }
       }
    }

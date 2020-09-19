@@ -1,0 +1,13 @@
+.card-wrapper {
+   margin-bottom: 2rem;
+}
+
+.tabs-custom { 
+   a {
+      color: $dark-text-color;
+      
+      &:hover {
+         color: $dark-text-color;
+      }
+   }
+}
