@@ -10,10 +10,6 @@ aside {
    z-index: 100;
 }
 
-body.sidebar-closed aside {
-   transform: translateX(-100%);
-}
-
 .sidebar {
    &-logo {
       height: 65px;
@@ -51,6 +47,12 @@ body.sidebar-closed aside {
             color: #fff;
          }
       }
+   }
+}
+
+@media screen and (min-width: 769px) {
+   body.sidebar-closed aside {
+      transform: translateX(-100%);
    }
 }
 
