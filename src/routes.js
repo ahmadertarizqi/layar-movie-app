@@ -1,5 +1,6 @@
 // import React from 'react';
 import Favorites from "views/Favorites";
+import MovieDetail from "views/movies/MovieDetail";
 import MoviesContainer from "views/movies/MoviesContainer";
 import MoviesNowPlaying from "views/movies/MoviesNowPlaying";
 import MoviesPopular from "views/movies/MoviesPopular";
@@ -12,18 +13,23 @@ const routes = [
       component: MoviesContainer,
       routes: [
          {
-            name: 'nowplaying',
-            path: '/movies/nowplaying',
-            exact: true,
-            component: MoviesNowPlaying
-         },
-         {
             name: 'popular',
             path: '/movies/popular',
             exact: true,
             component: MoviesPopular
+         },
+         {
+            name: 'nowplaying',
+            path: '/movies/nowplaying',
+            exact: true,
+            component: MoviesNowPlaying
          }
       ]
+   },
+   {
+      name: 'movie detail',
+      path: '/movie/:movieID',
+      component: MovieDetail
    },
    {
       name: 'tvshows',

@@ -23,6 +23,7 @@ export default function App() {
             ? (
               <Route key={idx} 
                 path={route.path} 
+                exact={route.exact}
                 render={(props) => (
                   <route.component {...props} routes={route.routes} />
                 )}
