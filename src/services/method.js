@@ -1,7 +1,8 @@
 import Axios from 'axios';
+import DeepMerge from 'deepmerge';
 import { apiKEY } from '../constants';
 
-const options = {
+let options = {
    headers: { 
       'Content-Type': 'application/json' 
    },
@@ -12,8 +13,13 @@ const options = {
 
 /**
  * @param {String} URL 
+ * @param {Object} optionsUpdate
  */
-export const getData = async (URL) => {
+export const getData = async (URL, optionsUpdate) => {
+   if(optionsUpdate) {
+      options = DeepMerge(options, optionsUpdate);
+   }
+
    try {
       const response = await Axios.get(URL, options);
       return response;

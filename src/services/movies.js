@@ -11,4 +11,15 @@ async function getMoviesPopular() {
    return response;
 }
 
-export default { getMoviesNowPlaying, getMoviesPopular };
+async function getMovie(dataID) {
+   const options = {
+      params: {
+         append_to_response: 'external_ids,credits,videos,images'
+      }
+   };
+
+   const response = await getData(`${apiURL}/movie/${dataID}`, options);
+   return response;
+}
+
+export default { getMoviesNowPlaying, getMoviesPopular, getMovie };

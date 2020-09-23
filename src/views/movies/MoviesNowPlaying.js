@@ -19,9 +19,16 @@ export default function MoviesNowPlaying() {
             <h2 className="is-size-4 mb-4">Now Playing</h2>
          </div>
          <div className="cw-body">
-            <div className="columns is-multiline">
+            <div className="columns is-multiline" style={{ display: 'flex' }}>
                {nowplaying.map(movie => (
-                  <Poster key={movie.id} poster={movie.poster_path} title={movie.title} />
+                  <Poster 
+                     key={movie.id}
+                     detailId={movie.id} 
+                     poster={movie.poster_path} 
+                     title={movie.title}
+                     releaseDate={movie.release_date}
+                     rating={movie.vote_average}
+                  />
                ))}
             </div>
          </div>
