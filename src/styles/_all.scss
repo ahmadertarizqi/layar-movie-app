@@ -78,6 +78,8 @@
    }
 
    .genres-list {
+      margin-bottom: 15px;
+
       a {
          color: #fff;
       }
@@ -89,7 +91,7 @@
 
    .info-additional {
       display: flex;
-      margin-bottom: 25px;
+      margin-bottom: 17px;
 
       .item {
          margin-right: 1.85rem;
@@ -102,6 +104,20 @@
 
          .symbol {
             margin-right: 6px;
+         }
+      }
+   }
+
+   .info-credits {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 17px;
+
+      .item {
+         margin-right: 50px;
+
+         &:last-child {
+            margin-right: 0;
          }
       }
    }
