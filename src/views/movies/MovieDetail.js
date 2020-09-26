@@ -4,7 +4,8 @@ import API from 'services/movies';
 import { imgURL } from 'constants/index';
 import * as Icon from 'react-feather';
 import dayjs from 'dayjs';
-import { findValueByJob, timeConvert } from 'utils'
+import { chunkArray, findValueByJob, timeConvert } from 'utils'
+import UserAvatar from 'components/UserAvatar';
 
 export default function MovieDetail(props) {
    const { movieID } = useParams();
@@ -51,6 +52,33 @@ export default function MovieDetail(props) {
                      : '--'
                   }
                </p>
+            </React.Fragment>
+         )
+      }
+   };
+
+   const renderCast = () => {
+      if(movieDetail.credits) {
+         const creditsCast = chunkArray(movieDetail.credits.cast, 2);
+         return (
+            <React.Fragment>
+               <h2 className="is-size-4 mb-4">Cast</h2>
+               <div className="row-overflow-horizontal">
+                  <div className="columns">
+                     {creditsCast.map((cast, idx) => (
+                        <div className="column is-3" key={idx}>
+                           {cast.map(val => (
+                              <UserAvatar 
+                                 key={val.id}
+                                 photo={val.profile_path}
+                                 castName={val.name}
+                                 characterName={val.character}    
+                              />
+                           ))}
+                        </div>
+                     ))}
+                  </div>
+               </div>
             </React.Fragment>
          )
       }
@@ -104,6 +132,9 @@ export default function MovieDetail(props) {
                   </div>
                </div>
             </div>
+         </div>
+         <div className="body-content">
+            {renderCast()}
          </div>
       </div>
    );

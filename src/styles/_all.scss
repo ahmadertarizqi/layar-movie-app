@@ -33,12 +33,17 @@
    }
 }
 
+.row-overflow-horizontal {
+   overflow-y: hidden;
+   overflow-x: auto;
+}
+
 /* ==== DETAIL CONTENT ==== */
 .detail-content {
    .header-content {
       position: relative;
       margin: -15px -40px 0 -40px;
-      padding: 15px 40px 15px 40px;
+      padding: 15px 40px 35px 40px;
       background-size: cover;
       background-position: right -13rem top;
       background-attachment: fixed;
@@ -55,6 +60,10 @@
          background: linear-gradient(to right, #002068 30%, #0044deb5);
          z-index: -1;
       }
+   }
+
+   .body-content {
+      padding: 25px 0;
    }
 
    .btn-go-back {

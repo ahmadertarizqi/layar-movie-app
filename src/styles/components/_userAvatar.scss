@@ -1,0 +1,38 @@
+.user-avatar {
+   border-top: 0 !important;
+   margin-bottom: 1rem;
+   padding-bottom: 1rem;
+
+   + .user-avatar {
+      margin-top: 0;
+      padding-top: 0;
+   }
+
+   .img-source {
+      border-radius: 4px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      &-wrap {
+         width: 65px;
+         height: 90px;
+      }
+   }
+
+   .media-content {
+      overflow: hidden;
+      
+      .cast-name,
+      .character-name {
+         color: #fff;
+         overflow: hidden;
+         white-space: nowrap;
+         text-overflow: ellipsis;
+      }
+
+      .divider {
+         margin-bottom: 6px;
+      }
+   }
+}

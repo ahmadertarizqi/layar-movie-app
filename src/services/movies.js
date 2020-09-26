@@ -14,7 +14,7 @@ async function getMoviesPopular() {
 async function getMovie(dataID) {
    const options = {
       params: {
-         append_to_response: 'external_ids,credits,videos,images'
+         append_to_response: 'external_ids,credits,videos,images,similar'
       }
    };
 
