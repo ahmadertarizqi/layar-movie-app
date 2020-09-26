@@ -37,6 +37,7 @@ body.sidebar-closed .main-wrapper {
 }
 
 @import 'all';
-@import 'components/Sidebar';
-@import 'components/Navbar';
-@import 'components/Poster';
+@import 'components/sidebar';
+@import 'components/poster';
+@import 'components/navbar';
+@import 'components/userAvatar';

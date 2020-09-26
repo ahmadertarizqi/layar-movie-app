@@ -1,0 +1,42 @@
+.card-poster {
+   .img-poster {
+      border-radius: 5px;
+      object-fit: cover;
+   }
+
+   .anchor-link {
+      display: block;
+      color: #fff;
+   }
+
+   .cp-title {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      font-weight: 600;
+   }
+
+   .poster-info {
+      display: flex;
+      justify-content: space-between;
+
+      .date-year {
+         color: $dark-text-color;
+         font-size: 16px;
+      }
+
+      .rating {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+
+         .star {
+            margin-right: 5px;
+         }
+
+         &-val {
+            font-size: 16px;
+         }
+      }
+   }
+}
