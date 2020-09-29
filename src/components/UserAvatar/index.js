@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { imgURL } from 'constants/index';
+import { imgURL } from '../../contants';
 import defaultImage from 'assets/placeholder-user.png';
 
 export default function UserAvatar({ photo, castName, characterName }) {

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import API from 'services/movies';
-import { imgURL } from 'constants/index';
+import { imgURL } from '../../contants';
 import * as Icon from 'react-feather';
 import dayjs from 'dayjs';
 import { chunkArray, findValueByJob, timeConvert } from 'utils'
 import UserAvatar from 'components/UserAvatar';
+import Poster from 'components/Poster';
+
 
 export default function MovieDetail(props) {
    const { movieID } = useParams();
@@ -15,6 +17,7 @@ export default function MovieDetail(props) {
       const getMovieDetail = async () => {
          const response = await API.getMovie(movieID);
          setMovieDetail(response.data);
+         window.scroll({ top: 0, left: 0, behavior: 'smooth' });
       };
 
       getMovieDetail();
@@ -42,12 +45,12 @@ export default function MovieDetail(props) {
    };
 
    const renderProductions = () => {
-      if(movieDetail.production_companies) {
+      if (movieDetail.production_companies) {
          return (
             <React.Fragment>
                <h6 className="text-title is-size-6">Production Companies</h6>
                <p>
-                  {movieDetail.production_companies.length > 0 ? 
+                  {movieDetail.production_companies.length > 0 ?
                      movieDetail.production_companies.map(company => company.name).join(', ')
                      : '--'
                   }
@@ -58,28 +61,54 @@ export default function MovieDetail(props) {
    };
 
    const renderCast = () => {
-      if(movieDetail.credits) {
-         const creditsCast = chunkArray(movieDetail.credits.cast, 2);
+      const creditsCast = chunkArray(movieDetail.credits.cast, 2);
+      return (
+         <React.Fragment>
+            <h2 className="is-size-4 mb-4">Cast</h2>
+            <div className="row-overflow-horizontal">
+               <div className="columns">
+                  {creditsCast.map((cast, idx) => (
+                     <div className="column is-3" key={idx}>
+                        {cast.map(val => (
+                           <UserAvatar
+                              key={val.id}
+                              photo={val.profile_path}
+                              castName={val.name}
+                              characterName={val.character}
+                           />
+                        ))}
+                     </div>
+                  ))}
+               </div>
+            </div>
+         </React.Fragment>
+      )
+   };
+
+   const renderSimilarMovies = () => {
+      const { results: movies } = movieDetail.similar;
+      if(movies.length > 0) {
          return (
-            <React.Fragment>
-               <h2 className="is-size-4 mb-4">Cast</h2>
-               <div className="row-overflow-horizontal">
-                  <div className="columns">
-                     {creditsCast.map((cast, idx) => (
-                        <div className="column is-3" key={idx}>
-                           {cast.map(val => (
-                              <UserAvatar 
-                                 key={val.id}
-                                 photo={val.profile_path}
-                                 castName={val.name}
-                                 characterName={val.character}    
+            <div className="card-wrapper">
+               <h2 className="is-size-4 mb-4">Similar Movies</h2>
+               <div className="cw-body">
+                  <div className="row-overflow-horizontal">
+                     <div className="columns">
+                        {movies.map(movie => (
+                           <div className="column is-2" key={movie.id}>
+                              <Poster 
+                                 detailId={movie.id}
+                                 poster={movie.poster_path}
+                                 title={movie.title}
+                                 releaseDate={movie.release_date}
+                                 rating={movie.vote_average}
                               />
-                           ))}
-                        </div>
-                     ))}
+                           </div>
+                        ))}
+                     </div>
                   </div>
                </div>
-            </React.Fragment>
+            </div>
          )
       }
    };
@@ -134,7 +163,13 @@ export default function MovieDetail(props) {
             </div>
          </div>
          <div className="body-content">
-            {renderCast()}
+            {movieDetail.credits && (
+               renderCast()
+            )}
+            <div className="mb-6"></div>
+            {movieDetail.similar && (
+               renderSimilarMovies()
+            )}
          </div>
       </div>
    );

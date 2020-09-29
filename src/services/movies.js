@@ -1,4 +1,4 @@
-import { apiURL } from "../constants";
+import { apiURL } from "../contants";
 import { getData } from "./method";
 
 async function getMoviesNowPlaying() {

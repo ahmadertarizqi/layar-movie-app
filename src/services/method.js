@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import DeepMerge from 'deepmerge';
-import { apiKEY } from '../constants';
+import { apiKEY } from '../contants';
 
 let options = {
    headers: { 
