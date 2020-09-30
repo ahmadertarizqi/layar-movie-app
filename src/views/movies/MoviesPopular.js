@@ -8,7 +8,7 @@ export default function MoviesPopular() {
    useEffect(() => {
       const getMoviesPopular = async () => {
          const response = await API.getMoviesPopular();
-         setPopular(response.data.results);
+         setPopular(response.results);
       }
       getMoviesPopular();
    }, []);
@@ -21,7 +21,7 @@ export default function MoviesPopular() {
          <div className="cw-body">
             <div className="columns is-multiline" style={{ display: 'flex' }}>
                {popular.map(movie => (
-                  <div className="column is-2 is-6-mobile" key={movie.id}>
+                  <div className="column is-one-fifth is-6-mobile" key={movie.id}>
                      <Poster  
                         detailId={movie.id}
                         poster={movie.poster_path} 

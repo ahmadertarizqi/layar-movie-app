@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import API from 'services/movies';
-import { imgURL } from '../../contants';
+import { imgURL, youtubeEmbed } from '../../contants';
 import * as Icon from 'react-feather';
 import dayjs from 'dayjs';
 import { chunkArray, findValueByJob, timeConvert } from 'utils'
 import UserAvatar from 'components/UserAvatar';
 import Poster from 'components/Poster';
+import Modal from 'components/Modal';
 
 
 export default function MovieDetail(props) {
    const { movieID } = useParams();
    const [movieDetail, setMovieDetail] = useState({});
+   const [isOpen, setIsOpen] = useState(false);
 
    useEffect(() => {
       const getMovieDetail = async () => {
          const response = await API.getMovie(movieID);
-         setMovieDetail(response.data);
-         window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+         setMovieDetail(response);
       };
-
+      
       getMovieDetail();
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
    }, [movieID]);
 
    const renderCredits = () => {
@@ -95,7 +97,7 @@ export default function MovieDetail(props) {
                   <div className="row-overflow-horizontal">
                      <div className="columns">
                         {movies.map(movie => (
-                           <div className="column is-2" key={movie.id}>
+                           <div className="column is-one-fifth" key={movie.id}>
                               <Poster 
                                  detailId={movie.id}
                                  poster={movie.poster_path}
@@ -109,6 +111,29 @@ export default function MovieDetail(props) {
                   </div>
                </div>
             </div>
+         )
+      }
+   };
+
+   const handleCloseModal = () => {
+      setIsOpen(false);
+   };
+
+   const renderVideoTrailer = () => {
+      const { results: trailer } = movieDetail.videos;
+      if(trailer.length > 0) {
+         return (
+            <Modal opened={isOpen} onClose={handleCloseModal}>
+               <div className="trailer-preview">
+                  <iframe 
+                     title={trailer[0].name} 
+                     width="100%" 
+                     height="500"
+                     src={`${youtubeEmbed}/${trailer[0].key}?autoplay=${isOpen ? 1 : 0}`}
+                     allowFullScreen
+                  ></iframe>
+               </div>
+            </Modal>
          )
       }
    };
@@ -147,7 +172,13 @@ export default function MovieDetail(props) {
                            <Icon.Clock className="symbol" /> <span>{timeConvert(movieDetail.runtime)}</span>
                         </div>
                         <div className="item">
-                           <button className="button is-rounded">
+                           <button 
+                              className="button is-rounded" 
+                              onClick={() => { 
+                                 setIsOpen(true); 
+                                 document.documentElement.style.overflow = 'hidden';
+                              }}
+                           >
                               <Icon.Play fill="#002068" color="#002068" /> Watch Trailer
                            </button>
                         </div>
@@ -169,6 +200,9 @@ export default function MovieDetail(props) {
             <div className="mb-6"></div>
             {movieDetail.similar && (
                renderSimilarMovies()
+            )}
+            {movieDetail.videos && (
+               renderVideoTrailer()
             )}
          </div>
       </div>
