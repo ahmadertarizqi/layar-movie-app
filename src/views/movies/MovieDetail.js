@@ -141,7 +141,7 @@ export default function MovieDetail(props) {
    return (
       <div className="detail-content">
          <div className="header-content" style={{ backgroundImage: `url(${imgURL + movieDetail.backdrop_path})` }}>
-            <button className="button btn-go-back" onClick={() => props.history.goBack()}>
+            <button className="button btn-go-back" onClick={() => props.history.push('/movies')}>
                <Icon.ArrowLeft /> <span>Back to main</span>
             </button>
             <div className="columns is-multiline">
