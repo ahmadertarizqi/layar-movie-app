@@ -6,8 +6,17 @@ async function getMoviesNowPlaying() {
    return response.data;
 }
 
-async function getMoviesPopular() {
-   const response = await getData(`${apiURL}/movie/popular`);
+/**
+ * @param {number} page 
+ */
+async function getMoviesPopular(page) {
+   const options = {
+      params: {
+         page
+      }
+   };
+
+   const response = await getData(`${apiURL}/movie/popular`, options);
    return response.data;
 }
 

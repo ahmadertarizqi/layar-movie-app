@@ -4,14 +4,20 @@ import Poster from 'components/Poster';
 
 export default function MoviesPopular() {
    const [popular, setPopular] = useState([]);
+   const [page, setPage] = useState(1);
+   const [isLoadMore, setIsLoadMore] = useState(false);
 
    useEffect(() => {
       const getMoviesPopular = async () => {
-         const response = await API.getMoviesPopular();
-         setPopular(response.results);
-      }
+         setIsLoadMore(true);
+         const response = await API.getMoviesPopular(page);
+         setPopular(prevData => [...prevData, ...response.results]);
+         setIsLoadMore(false);
+      };
       getMoviesPopular();
-   }, []);
+   }, [page]);
+
+   const loadMoreMovies = () => setPage(prevPage => prevPage + 1);
 
    return (
       <div className="card-wrapper">
@@ -20,17 +26,22 @@ export default function MoviesPopular() {
          </div>
          <div className="cw-body">
             <div className="columns is-multiline" style={{ display: 'flex' }}>
-               {popular.map(movie => (
-                  <div className="column is-one-fifth is-6-mobile" key={movie.id}>
-                     <Poster  
+               {popular.map((movie, idx) => (
+                  <div className="column is-one-fifth is-6-mobile" key={idx}>
+                     <Poster
                         detailId={movie.id}
-                        poster={movie.poster_path} 
+                        poster={movie.poster_path}
                         title={movie.title}
                         releaseDate={movie.release_date}
                         rating={movie.vote_average}
                      />
                   </div>
                ))}
+            </div>
+            <div style={{textAlign: 'center'}}>
+               <button className={`button ${isLoadMore ? 'is-loading' : ''}`} onClick={() => loadMoreMovies()}>
+                  {isLoadMore ? 'Loading...' : 'Load More'}
+               </button>
             </div>
          </div>
       </div>
