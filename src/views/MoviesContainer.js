@@ -8,11 +8,11 @@ const menuTabs = [
    },
    {
       name: 'Now Playing',
-      link: '/nowplaying'
+      link: '/now_playing'
    },
    {
       name: 'Top Rated',
-      link: '/toprated'
+      link: '/top_rated'
    },
    {
       name: 'Upcoming',
@@ -34,7 +34,9 @@ export default function Movies(props) {
       const isActive = (currentUrl[2] === tabs.link.substr(1)) ? 'is-active' : '';
       return (
          <li className={isActive} key={tabs.name}>
-            <Link to={`${match.path + tabs.link}`}>{tabs.name}</Link>
+            <Link to={{
+               pathname: `${match.path + tabs.link}`
+            }}>{tabs.name}</Link>
          </li>
       );
    });

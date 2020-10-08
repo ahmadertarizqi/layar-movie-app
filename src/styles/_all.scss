@@ -1,5 +1,12 @@
 .card-wrapper {
    margin-bottom: 2rem;
+
+   .cw-header {
+      &-title {
+         text-transform: capitalize;
+      }
+   }
+
 }
 
 .tabs-custom { 

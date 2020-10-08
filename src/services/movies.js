@@ -1,22 +1,18 @@
 import { apiURL } from "../contants";
 import { getData } from "./method";
 
-async function getMoviesNowPlaying() {
-   const response = await getData(`${apiURL}/movie/now_playing`);
-   return response.data;
-}
-
 /**
  * @param {number} page 
+ * @param {string} statusEndpoint 
+ * 
+ * Status Endpoint: now_playing, popular, top_rated, upcoming, latest
  */
-async function getMoviesPopular(page) {
+async function getMovies(page, statusEndpoint) {
    const options = {
-      params: {
-         page
-      }
+      params: { page }
    };
 
-   const response = await getData(`${apiURL}/movie/popular`, options);
+   const response = await getData(`${apiURL}/movie/${statusEndpoint}`, options);
    return response.data;
 }
 
@@ -31,4 +27,4 @@ async function getMovie(dataID) {
    return response.data;
 }
 
-export default { getMoviesNowPlaying, getMoviesPopular, getMovie };
+export default { getMovies, getMovie };
