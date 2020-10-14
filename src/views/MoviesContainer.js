@@ -76,7 +76,7 @@ export default function Movies(props) {
                   />
                ) : null
             })}
-            <Redirect from={match.path} to={`${match.path}/popular`} />
+            <Redirect from={match.path} to={`${match.path + menuTabs[0].link}`} />
          </Switch>
       </div>
    )
