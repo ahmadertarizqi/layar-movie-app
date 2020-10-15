@@ -2,22 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link, Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 const menuTabs = [
-   {
-      name: 'Popular',
-      link: '/popular'
-   },
-   {
-      name: 'Now Playing',
-      link: '/now_playing'
-   },
-   {
-      name: 'Top Rated',
-      link: '/top_rated'
-   },
-   {
-      name: 'Upcoming',
-      link: '/upcoming'
-   }
+   { name: 'Popular', link: '/popular' },
+   { name: 'Now Playing', link: '/now_playing' },
+   { name: 'Top Rated', link: '/top_rated' },
+   { name: 'Upcoming', link: '/upcoming' }
 ];
 
 export default function Movies(props) {
@@ -34,9 +22,7 @@ export default function Movies(props) {
       const isActive = (currentUrl[2] === tabs.link.substr(1)) ? 'is-active' : '';
       return (
          <li className={isActive} key={tabs.name}>
-            <Link to={{
-               pathname: `${match.path + tabs.link}`
-            }}>{tabs.name}</Link>
+            <Link to={`${match.path + tabs.link}`}>{tabs.name}</Link>
          </li>
       );
    });

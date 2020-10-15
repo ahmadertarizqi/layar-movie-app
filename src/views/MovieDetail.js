@@ -146,7 +146,7 @@ export default function MovieDetail(props) {
             </button>
             <div className="columns is-multiline">
                <div className="column is-3 card-poster">
-                  <img className="img-poster" src={`${imgURL + movieDetail.poster_path}`} alt={movieDetail.title} />
+                  <img className="img-poster without-info" src={`${imgURL + movieDetail.poster_path}`} alt={movieDetail.title} />
                </div>
                <div className="column is-9">
                   <div className="movie-description">
