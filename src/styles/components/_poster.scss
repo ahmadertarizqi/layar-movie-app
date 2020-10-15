@@ -1,12 +1,22 @@
 .card-poster {
    .img-poster {
-      border-radius: 5px;
+      width: 100%;
+      height: 325px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
       object-fit: cover;
+
+      &.without-info {
+         height: auto;
+         border-radius: 5px;
+      }
    }
 
    .anchor-link {
+      background-color: $dark-color-500;
       display: block;
       color: #fff;
+      border-radius: 5px;
    }
 
    .cp-title {
@@ -17,6 +27,11 @@
    }
 
    .poster-info {
+
+      &-wrapper {
+         padding: 10px 13px;
+      }
+
       display: flex;
       justify-content: space-between;
 

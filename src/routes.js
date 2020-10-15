@@ -1,4 +1,5 @@
 // import React from 'react';
+import Browse from "views/Browse";
 import Favorites from "views/Favorites";
 import MovieDetail from "views/MovieDetail";
 import MoviesCategory from "views/MoviesCategory";
@@ -6,6 +7,11 @@ import MoviesContainer from "views/MoviesContainer";
 import Tvshows from "views/Tvshows";
 
 const routes = [
+   {
+      name: 'Browse',
+      path: '/browse',
+      component: Browse
+   },
    {
       name: 'movies',
       path: '/movies',
@@ -25,8 +31,8 @@ const routes = [
       component: MovieDetail
    },
    {
-      name: 'tvshows',
-      path: '/tvshows',
+      name: 'people',
+      path: '/people',
       component: Tvshows
    },
    {

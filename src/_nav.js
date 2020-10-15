@@ -3,14 +3,19 @@ import * as Icon from 'react-feather';
 
 const navigation = [
    {
+      name: 'Browse',
+      icon: <Icon.Grid />,
+      link: '/browse'
+   },
+   {
       name: 'Movies',
       icon: <Icon.Film />,
       link: '/movies'
    },
    {
-      name: 'Tv Shows',
-      icon: <Icon.Tv />,
-      link: '/tvshows'
+      name: 'People',
+      icon: <Icon.Users />,
+      link: '/people'
    },
    {
       name: 'Favorites',

@@ -1,6 +1,7 @@
 {
   "name": "the-movie-app",
   "version": "0.1.0",
+  "author": "Ahmaderta Rizqi, <ahmadertariz@gmail.com>",
   "private": true,
   "dependencies": {
     "axios": "^0.20.0",

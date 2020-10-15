@@ -1,0 +1,11 @@
+.card-wrapper {
+   margin-bottom: 2rem;
+   .cw-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+
+      &-title { text-transform: capitalize; }
+      &-action { }
+   }
+}

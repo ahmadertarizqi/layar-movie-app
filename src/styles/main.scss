@@ -37,8 +37,10 @@ body.sidebar-closed .main-wrapper {
 }
 
 @import 'all';
+@import 'components/select';
 @import 'components/sidebar';
 @import 'components/poster';
 @import 'components/navbar';
 @import 'components/userAvatar';
 @import 'components/modal';
+@import 'components/cardLayout';

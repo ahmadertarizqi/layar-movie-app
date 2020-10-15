@@ -27,4 +27,31 @@ async function getMovie(dataID) {
    return response.data;
 }
 
-export default { getMovies, getMovie };
+async function getGenreMovie() {
+   const response = await getData(`${apiURL}/genre/movie/list`);
+   return response.data;
+}
+
+async function getTrendingMovie(time) {
+   let timeWindow = `${apiURL}/trending/movie`;
+   switch(time) {
+      case 'day':
+         timeWindow += '/day';
+         break;
+      case 'week':
+         timeWindow += '/week';
+         break;
+      default:
+         console.log('Error Time Window');
+         break;
+   }
+   const response = await getData(timeWindow);
+   return response.data;
+}
+
+export default { 
+   getMovies, 
+   getMovie,
+   getGenreMovie,
+   getTrendingMovie
+};

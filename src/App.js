@@ -30,7 +30,7 @@ export default function App() {
               />
             ) : null
           })}
-          <Redirect from="/" to="/movies" />
+          <Redirect from="/" to="/browse" />
         </Switch>
       </div>
     </React.Fragment>

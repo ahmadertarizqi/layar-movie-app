@@ -8,7 +8,12 @@ export default function Modal({ opened, onClose, children }) {
 
    return (
       <div className={`modal ${opened ? 'is-active' : '' }`} style={opened ? style : null}>
-         <div className="modal-background"></div>
+         <div className="modal-background"
+            onClick={() => {
+               onClose();
+               document.documentElement.style.overflow = 'initial';  
+            }}
+         ></div>
          <div className="modal-content modal-content-customized">
             {children}
          </div>
