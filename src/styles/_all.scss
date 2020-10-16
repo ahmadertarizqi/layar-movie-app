@@ -32,22 +32,9 @@
 .row-overflow-horizontal {
    overflow-y: hidden;
    overflow-x: auto;
-   padding-bottom: 25px;
+   padding-bottom: 15px;
 }
 
-.box-genre {
-   &-item {
-      padding: 0.75rem 0.5rem;
-      background-color: $dark-color-500;
-      border-radius: 3px;
-      text-align: center;
-      font-size: 14px;
-      
-      > p {
-         color: $dark-text-color;
-      }
-   }
-}
 
 /* ==== DETAIL CONTENT ==== */
 .detail-content {

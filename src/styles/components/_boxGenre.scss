@@ -1,0 +1,31 @@
+$box-column: 10 !default;
+
+.box-genre {
+   &-wrapper {
+      display: flex;
+   }
+
+   &-item {
+      display: block;
+      flex: none;
+      width: 100% / $box-column;
+      text-align: center;
+      border-radius: 3px;
+
+      &:not(:last-child) {
+         margin-right: 12px;
+      }
+   }
+} 
+
+.box-genre-item-value {
+   color: $dark-text-color;
+   font-size: 14px;
+   display: block;
+   background-color: $dark-color-500;
+   padding: 0.75rem 0.5rem;
+
+   &:hover {
+      color: #fff;
+   }
+}
