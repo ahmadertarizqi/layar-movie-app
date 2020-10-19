@@ -32,8 +32,8 @@ async function getGenreMovie() {
    return response.data;
 }
 
-async function getTrendingMovie(time) {
-   let timeWindow = `${apiURL}/trending/movie`;
+async function getTrending(mediaType, time = 'day') {
+   let timeWindow = `${apiURL}/trending/${mediaType}`;
    switch(time) {
       case 'day':
          timeWindow += '/day';
@@ -42,7 +42,7 @@ async function getTrendingMovie(time) {
          timeWindow += '/week';
          break;
       default:
-         console.log('Error Time Window');
+         console.log('Error Get Trending');
          break;
    }
    const response = await getData(timeWindow);
@@ -53,5 +53,5 @@ export default {
    getMovies, 
    getMovie,
    getGenreMovie,
-   getTrendingMovie
+   getTrending
 };

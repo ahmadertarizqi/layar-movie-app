@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import API from 'services/movies';
-import { imgURL, youtubeEmbed } from '../contants';
+import { imgURL, youtubeEmbed } from '../../contants';
 import * as Icon from 'react-feather';
 import dayjs from 'dayjs';
 import { chunkArray, findValueByJob, timeConvert } from 'utils'

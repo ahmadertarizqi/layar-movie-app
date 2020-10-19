@@ -3,9 +3,9 @@ import * as Icon from 'react-feather';
 
 const navigation = [
    {
-      name: 'Browse',
+      name: 'Home',
       icon: <Icon.Grid />,
-      link: '/browse'
+      link: '/home'
    },
    {
       name: 'Movies',

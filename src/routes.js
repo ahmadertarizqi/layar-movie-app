@@ -1,16 +1,16 @@
 // import React from 'react';
-import Browse from "views/Browse";
+import Home from "views/home/HomeContainer";
 import Favorites from "views/Favorites";
-import MovieDetail from "views/MovieDetail";
-import MoviesCategory from "views/MoviesCategory";
-import MoviesContainer from "views/MoviesContainer";
+import MovieDetail from "views/movies/MovieDetail";
+import MoviesCategory from "views/movies/MoviesCategory";
+import MoviesContainer from "views/movies/MoviesContainer";
 import Tvshows from "views/Tvshows";
 
 const routes = [
    {
-      name: 'Browse',
-      path: '/browse',
-      component: Browse
+      name: 'Home',
+      path: '/home',
+      component: Home
    },
    {
       name: 'movies',

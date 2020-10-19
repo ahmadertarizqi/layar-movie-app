@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import API from 'services/movies';
 import { Link } from 'react-router-dom';
-import HomeBanner from 'components/HomeBanner';
+// import HomeBanner from 'components/HomeBanner';
 import CardLayout from 'components/CardLayout';
 import Poster from 'components/Poster';
 import { BoxGenre, BoxGenreItem } from 'components/BoxGenre';
+import UserAvatar from 'components/UserAvatar';
+import TrendingMovieList from './TrendingMovieList';
+import TrendingPeopleList from './TrendingPeopleList';
 
 export default function Browse() {
    const [genresMovie, setGenresMovie] = useState([]);
    const [trendingMovie, setTrendingMovie] = useState([]);
+   const [trendingPeople, setTrendingPeople] = useState([]);
    const [timeCategory, setTimeCategory] = useState('day');
 
    useEffect(() => {
@@ -17,13 +21,23 @@ export default function Browse() {
          setGenresMovie(response.genres);
       };
       getGenre();
+
+      const getTrendingPeople = async () => {
+         const response = await API.getTrending('person');
+         console.log("people");
+         console.log(response);
+         setTrendingPeople(response.results);
+      };
+
+      getTrendingPeople();
    }, []);
 
    useEffect(() => {
       const getTrendingMovie = async () => {
-         const response = await API.getTrendingMovie(timeCategory);
+         const response = await API.getTrending('movie', timeCategory);
          setTrendingMovie(response.results);
       };
+      
       getTrendingMovie();
    }, [timeCategory]);
 
@@ -38,34 +52,17 @@ export default function Browse() {
                </BoxGenreItem>
             ))}
          </BoxGenre>
+
          <div className="mb-5"></div>
-         <CardLayout 
-            title="Trending Movie"
-            withAction={
-               <div className="select select-customized">
-                  <select value={timeCategory} onChange={(ev) => setTimeCategory(ev.target.value)}>
-                     <option value="day">Today</option>
-                     <option value="week">This Week</option>
-                  </select>
-               </div>
-            }
-         >
-            <div className="row-overflow-horizontal">
-               <div className="columns">
-                  {trendingMovie.map(movie => (
-                     <div className="column is-one-fifth" key={movie.id}>
-                        <Poster
-                           detailId={movie.id}
-                           poster={movie.poster_path}
-                           title={movie.title}
-                           releaseDate={movie.release_date}
-                           rating={movie.vote_average}
-                        />
-                     </div>
-                  ))}
-               </div>
+         
+         <div className="columns">
+            <div className="column is-8">
+               <TrendingMovieList movies={trendingMovie} />
             </div>
-         </CardLayout>
+            <div className="column is-4">
+               <TrendingPeopleList peoples={trendingPeople} />
+            </div>
+         </div>
       </div>
    )
 };
