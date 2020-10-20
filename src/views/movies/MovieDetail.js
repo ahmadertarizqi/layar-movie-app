@@ -77,7 +77,13 @@ export default function MovieDetail(props) {
                               photo={val.profile_path}
                               castName={val.name}
                               characterName={val.character}
-                           />
+                           >
+                              <h6 className="text-title is-size-7">Name</h6>
+                              <p className="cast-name">{val.name ? val.name : '--'}</p>
+                              <div className="divider"></div>
+                              <h6 className="text-title is-size-7">Character</h6>
+                              <p className="character-name">{val.character ? val.character : '--'}</p>
+                           </UserAvatar>
                         ))}
                      </div>
                   ))}
