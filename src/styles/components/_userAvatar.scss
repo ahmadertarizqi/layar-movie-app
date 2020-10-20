@@ -8,6 +8,11 @@
       margin: 0;
    }
 
+   &.is-vertical-list {
+      margin-bottom: 1rem;
+      padding-bottom: 0.25rem;
+   }
+
    .img-source {
       border-radius: 4px;
       width: 100%;
@@ -35,4 +40,8 @@
          margin-bottom: 6px;
       }
    }
+}
+
+.text-value {
+   color: #fff;
 }
