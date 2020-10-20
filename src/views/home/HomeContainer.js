@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react';
 import API from 'services/movies';
 import { Link } from 'react-router-dom';
 // import HomeBanner from 'components/HomeBanner';
-import CardLayout from 'components/CardLayout';
-import Poster from 'components/Poster';
 import { BoxGenre, BoxGenreItem } from 'components/BoxGenre';
-import UserAvatar from 'components/UserAvatar';
 import TrendingMovieList from './TrendingMovieList';
 import TrendingPeopleList from './TrendingPeopleList';
 
@@ -20,25 +17,23 @@ export default function Browse() {
          const response = await API.getGenreMovie();
          setGenresMovie(response.genres);
       };
-      getGenre();
 
       const getTrendingPeople = async () => {
          const response = await API.getTrending('person');
-         console.log("people");
-         console.log(response);
          setTrendingPeople(response.results);
       };
 
+      getGenre();
       getTrendingPeople();
    }, []);
 
+   const getTrendingMovie = async (time) => {
+      const response = await API.getTrending('movie', time);
+      setTrendingMovie(response.results);
+   };
+
    useEffect(() => {
-      const getTrendingMovie = async () => {
-         const response = await API.getTrending('movie', timeCategory);
-         setTrendingMovie(response.results);
-      };
-      
-      getTrendingMovie();
+      getTrendingMovie(timeCategory);
    }, [timeCategory]);
 
    return (
@@ -57,7 +52,11 @@ export default function Browse() {
          
          <div className="columns">
             <div className="column is-8">
-               <TrendingMovieList movies={trendingMovie} />
+               <TrendingMovieList 
+                  movies={trendingMovie} 
+                  timeCategory={timeCategory}
+                  onSelectChange={setTimeCategory} 
+               />
             </div>
             <div className="column is-4">
                <TrendingPeopleList peoples={trendingPeople} />

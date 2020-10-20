@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function CardLayout({ children, title, withAction }) {
+export default function CardLayout({ children, title, withAction, className }) {
    return (
-      <div className="card-wrapper">
+      <div className={`card-wrapper ${className}`}>
          <div className="cw-header">
             <h2 className="is-size-4 cw-header-title">{title}</h2>
             {withAction && <div className="cw-header-action">{withAction}</div>}
@@ -16,5 +16,10 @@ export default function CardLayout({ children, title, withAction }) {
 CardLayout.propTypes = {
    title: PropTypes.string,
    children: PropTypes.element,
-   withAction: PropTypes.element
+   withAction: PropTypes.element,
+   className: PropTypes.string
+};
+
+CardLayout.defaultProps = {
+   className: ""
 };
