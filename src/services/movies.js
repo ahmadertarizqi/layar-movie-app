@@ -63,11 +63,12 @@ async function getGenreMovie() {
    return response;
 }
 
-async function getMoviesByGenre(genreID) {
+async function getMoviesByGenre(genreID, numberPage = 1) {
    const response = await getData(`${apiURL}/discover/movie`, {
       params: {
          api_key: apiKEY,
-         with_genres: genreID
+         with_genres: genreID,
+         page: numberPage
       }
    });
    return response.data;

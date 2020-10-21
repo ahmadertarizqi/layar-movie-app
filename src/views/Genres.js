@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams, Link } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import CardLayout from 'components/CardLayout';
 import Poster from 'components/Poster'
 import API from 'services/movies';
@@ -12,6 +12,7 @@ export default function Genres(props) {
    const [genreList, setGenreList] = useState([]);
    const [genreChange, setGenreChange] = useState(genreID);
    const [currentGenre, setCurrentGenre] = useState(state.currentGenrePage);
+   const [numberPage, setNumberPage] = useState(1);
 
    useEffect(() => {
       const getGenre = async () => {
@@ -25,9 +26,9 @@ export default function Genres(props) {
       let isCancelled = false;
       const getMoviesByGenre = async () => {
          try {
-            const response = await API.getMoviesByGenre(genreChange);
+            const response = await API.getMoviesByGenre(genreChange, numberPage);
             if(!isCancelled) {
-               setMovies(response.results);
+               setMovies((prevMovies) => [...prevMovies, ...response.results]);
             }
          } catch (error) {
             throw error;
@@ -39,8 +40,7 @@ export default function Genres(props) {
       return () => {
          isCancelled = true;
       };
-
-   }, [genreChange]);
+   }, [genreChange, numberPage]);
 
    const selectGenreChange = (ev) => {
       let temp = {};
@@ -53,7 +53,13 @@ export default function Genres(props) {
       });
       setGenreChange(temp.id);
       setCurrentGenre(temp.name);
-   }
+      setNumberPage(1);
+      setMovies([]);
+   };
+
+   const loadMoreMovies = () => {
+      setNumberPage((prevNumberPage) => prevNumberPage + 1);
+   };
 
    if(!movies || movies.length < 1) return <div>Loading....</div>
 
@@ -87,7 +93,7 @@ export default function Genres(props) {
                ))}
             </div>
             <div style={{ textAlign: 'center' }}>
-               <button className={`button`}>
+               <button className={`button`} onClick={() => loadMoreMovies()}>
                   Load More
                   {/* {isLoadMore ? 'Loading...' : 'Load More'} */}
                </button>
