@@ -15,7 +15,10 @@ export default function CardLayout({ children, title, withAction, className }) {
 
 CardLayout.propTypes = {
    title: PropTypes.string,
-   children: PropTypes.element,
+   children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+   ]),
    withAction: PropTypes.element,
    className: PropTypes.string
 };
