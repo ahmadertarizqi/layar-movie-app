@@ -14,8 +14,8 @@ export default function Browse() {
 
    useEffect(() => {
       const getGenre = async () => {
-         const response = await API.getGenreMovie();
-         setGenresMovie(response.genres);
+         const results = await API.getGenreMovie();
+         setGenresMovie(results);
       };
 
       const getTrendingPeople = async () => {
@@ -41,7 +41,12 @@ export default function Browse() {
          <BoxGenre data={genresMovie}>
             {genresMovie.map(genre => (
                <BoxGenreItem key={genre.id}>
-                  <Link to={`/genres/${genre.id}`} className="box-genre-item-value">
+                  <Link to={{
+                     pathname: `/genres/${genre.id}`,
+                     state: {
+                        currentGenrePage: genre.name
+                     }
+                  }} className="box-genre-item-value">
                      {genre.name}
                   </Link>
                </BoxGenreItem>

@@ -1,5 +1,6 @@
 import { apiKEY, apiURL } from "../contants";
 import { getData } from "./method";
+import genres from 'services/genres.json';
 
 /**
  * @param {number} page 
@@ -27,13 +28,6 @@ async function getMovie(dataID) {
    return response.data;
 }
 
-async function getGenreMovie() {
-   const response = await getData(`${apiURL}/genre/movie/list`, {
-      params: { api_key: apiKEY }
-   });
-   return response.data;
-}
-
 async function getTrending(mediaType, time = 'day') {
    let timeWindow = `${apiURL}/trending/${mediaType}`;
    switch(time) {
@@ -52,6 +46,21 @@ async function getTrending(mediaType, time = 'day') {
       params: { api_key: apiKEY }
    });
    return response.data;
+}
+
+function genreHardcodeJson(data) {
+   return new Promise((resolve, reject) => {
+      if(data) {
+         resolve(data)
+      } else {
+         reject('Promise: GenreHardcode is Rejected')
+      }
+   });
+}
+
+async function getGenreMovie() {
+   const response = await genreHardcodeJson(genres);
+   return response;
 }
 
 async function getMoviesByGenre(genreID) {

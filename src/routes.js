@@ -5,6 +5,7 @@ import MovieDetail from "views/movies/MovieDetail";
 import MoviesCategory from "views/movies/MoviesCategory";
 import MoviesContainer from "views/movies/MoviesContainer";
 import Tvshows from "views/Tvshows";
+import Genres from "views/Genres";
 
 const routes = [
    {
@@ -34,6 +35,11 @@ const routes = [
       name: 'people',
       path: '/people',
       component: Tvshows
+   },
+   {
+      name: 'Genres',
+      path: '/genres/:genreID',
+      component: Genres
    },
    {
       name: 'favorites',

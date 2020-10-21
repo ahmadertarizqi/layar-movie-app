@@ -4,7 +4,7 @@ import * as Icon from 'react-feather';
 const navigation = [
    {
       name: 'Home',
-      icon: <Icon.Grid />,
+      icon: <Icon.Home />,
       link: '/home'
    },
    {

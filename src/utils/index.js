@@ -25,3 +25,7 @@ export const chunkArray = (array, size) => {
 
    return result;
 };
+
+export const useQueryParams = (location) => {
+   return new URLSearchParams(location);
+};
