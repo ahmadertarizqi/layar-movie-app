@@ -13,6 +13,7 @@ export default function Genres(props) {
    const [genreChange, setGenreChange] = useState(genreID);
    const [currentGenre, setCurrentGenre] = useState(state.currentGenrePage);
    const [numberPage, setNumberPage] = useState(1);
+   const [isLoadMore, setLoadmore] = useState(false);
 
    useEffect(() => {
       const getGenre = async () => {
@@ -24,13 +25,16 @@ export default function Genres(props) {
 
    useEffect(() => {
       let isCancelled = false;
+      setLoadmore(true);
       const getMoviesByGenre = async () => {
          try {
             const response = await API.getMoviesByGenre(genreChange, numberPage);
             if(!isCancelled) {
                setMovies((prevMovies) => [...prevMovies, ...response.results]);
+               setLoadmore(false);
             }
          } catch (error) {
+            setLoadmore(false);
             throw error;
          }
       };
@@ -66,7 +70,7 @@ export default function Genres(props) {
    return (
       <div className="movies-wrapper">
          <CardLayout 
-            title={`Genre Movie: ${currentGenre}`}
+            title={`Genre Movie: ${currentGenre} (${movies.length})`}
             withAction={
                <div className="select select-customized">
                   <select value={genreChange} onChange={selectGenreChange} >
@@ -93,9 +97,8 @@ export default function Genres(props) {
                ))}
             </div>
             <div style={{ textAlign: 'center' }}>
-               <button className={`button`} onClick={() => loadMoreMovies()}>
-                  Load More
-                  {/* {isLoadMore ? 'Loading...' : 'Load More'} */}
+               <button className={`button${isLoadMore ? ' is-loading': ''} `} onClick={() => loadMoreMovies()}>
+                  {isLoadMore ? 'Loading...' : 'Load More'}
                </button>
             </div>
          </CardLayout>
