@@ -1,5 +1,6 @@
 import React from 'react';
 import Poster from 'components/Poster';
+import CardLayout from 'components/CardLayout';
 
 export default function MovieList({
    title,
@@ -12,22 +13,19 @@ export default function MovieList({
 
    return (
       <React.Fragment>
-         <div className="cw-header">
-            <h2 className="is-size-4 mb-4 cw-header-title">{title}</h2>
-         </div>
-         <div className="cw-body">
+         <CardLayout title={title}>
             <div className="columns is-multiline">
-            {movies.map((movie, idx) => (
-               <div className="column is-one-fifth is-6-mobile" key={idx}>
-                  <Poster
-                     detailId={movie.id}
-                     poster={movie.poster_path}
-                     title={movie.title}
-                     releaseDate={movie.release_date}
-                     rating={movie.vote_average}
-                  />
-               </div>
-            ))}
+               {movies.map((movie, idx) => (
+                  <div className="column is-one-fifth is-6-mobile" key={idx}>
+                     <Poster
+                        detailId={movie.id}
+                        poster={movie.poster_path}
+                        title={movie.title}
+                        releaseDate={movie.release_date}
+                        rating={movie.vote_average}
+                     />
+                  </div>
+               ))}
             </div>
             <div style={{ textAlign: 'center' }}>
                <button 
@@ -37,7 +35,7 @@ export default function MovieList({
                   {isLoadMore ? 'Loading...' : 'Load More'}
                </button>
             </div>
-         </div>
+         </CardLayout>
       </React.Fragment>
    )
 };

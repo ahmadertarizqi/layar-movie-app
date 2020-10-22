@@ -8,6 +8,7 @@ import { chunkArray, findValueByJob, timeConvert } from 'utils'
 import UserAvatar from 'components/UserAvatar';
 import Poster from 'components/Poster';
 import Modal from 'components/Modal';
+import CardLayout from 'components/CardLayout';
 
 
 export default function MovieDetail(props) {
@@ -66,29 +67,30 @@ export default function MovieDetail(props) {
       const creditsCast = chunkArray(movieDetail.credits.cast, 2);
       return (
          <React.Fragment>
-            <h2 className="is-size-4 mb-4">Cast</h2>
-            <div className="row-overflow-horizontal">
-               <div className="columns">
-                  {creditsCast.map((cast, idx) => (
-                     <div className="column is-3" key={idx}>
-                        {cast.map(val => (
-                           <UserAvatar
-                              key={val.id}
-                              photo={val.profile_path}
-                              castName={val.name}
-                              characterName={val.character}
-                           >
-                              <h6 className="text-title is-size-7">Name</h6>
-                              <p className="cast-name">{val.name ? val.name : '--'}</p>
-                              <div className="divider"></div>
-                              <h6 className="text-title is-size-7">Character</h6>
-                              <p className="character-name">{val.character ? val.character : '--'}</p>
-                           </UserAvatar>
-                        ))}
-                     </div>
-                  ))}
+            <CardLayout title="Cast">
+               <div className="row-overflow-horizontal">
+                  <div className="columns">
+                     {creditsCast.map((cast, idx) => (
+                        <div className="column is-3" key={idx}>
+                           {cast.map(val => (
+                              <UserAvatar
+                                 key={val.id}
+                                 photo={val.profile_path}
+                                 castName={val.name}
+                                 characterName={val.character}
+                              >
+                                 <h6 className="text-title is-size-7">Name</h6>
+                                 <p className="cast-name">{val.name ? val.name : '--'}</p>
+                                 <div className="divider"></div>
+                                 <h6 className="text-title is-size-7">Character</h6>
+                                 <p className="character-name">{val.character ? val.character : '--'}</p>
+                              </UserAvatar>
+                           ))}
+                        </div>
+                     ))}
+                  </div>
                </div>
-            </div>
+            </CardLayout>
          </React.Fragment>
       )
    };
@@ -97,26 +99,23 @@ export default function MovieDetail(props) {
       const { results: movies } = movieDetail.similar;
       if(movies.length > 0) {
          return (
-            <div className="card-wrapper">
-               <h2 className="is-size-4 mb-4">Similar Movies</h2>
-               <div className="cw-body">
-                  <div className="row-overflow-horizontal">
-                     <div className="columns">
-                        {movies.map(movie => (
-                           <div className="column is-one-fifth" key={movie.id}>
-                              <Poster 
-                                 detailId={movie.id}
-                                 poster={movie.poster_path}
-                                 title={movie.title}
-                                 releaseDate={movie.release_date}
-                                 rating={movie.vote_average}
-                              />
-                           </div>
-                        ))}
-                     </div>
+            <CardLayout title="Similar Movies">
+               <div className="row-overflow-horizontal">
+                  <div className="columns">
+                     {movies.map(movie => (
+                        <div className="column is-one-fifth" key={movie.id}>
+                           <Poster 
+                              detailId={movie.id}
+                              poster={movie.poster_path}
+                              title={movie.title}
+                              releaseDate={movie.release_date}
+                              rating={movie.vote_average}
+                           />
+                        </div>
+                     ))}
                   </div>
                </div>
-            </div>
+            </CardLayout>
          )
       }
    };
