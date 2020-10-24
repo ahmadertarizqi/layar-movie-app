@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CardLayout from 'components/CardLayout';
-import Poster from 'components/Poster';
+import { MoviePoster } from 'components/Poster';
 import { Link } from 'react-router-dom';
 
 export default function TrendingMovieSection({ movies, timeCategory, onSelectChange }) {
@@ -35,7 +35,7 @@ export default function TrendingMovieSection({ movies, timeCategory, onSelectCha
             <div className="columns is-multiline">
                {movies.slice(0, limit).map(movie => (
                   <div className="column is-one-third" key={movie.id}>
-                     <Poster
+                     <MoviePoster
                         detailId={movie.id}
                         poster={movie.poster_path}
                         title={movie.title}

@@ -1,5 +1,5 @@
 import React from 'react';
-import Poster from 'components/Poster';
+import { MoviePoster } from 'components/Poster';
 import CardLayout from 'components/CardLayout';
 
 export default function MovieList({
@@ -17,7 +17,7 @@ export default function MovieList({
             <div className="columns is-multiline">
                {movies.map((movie, idx) => (
                   <div className="column is-one-fifth is-6-mobile" key={idx}>
-                     <Poster
+                     <MoviePoster
                         detailId={movie.id}
                         poster={movie.poster_path}
                         title={movie.title}

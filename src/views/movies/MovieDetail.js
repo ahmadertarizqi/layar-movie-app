@@ -6,7 +6,7 @@ import * as Icon from 'react-feather';
 import dayjs from 'dayjs';
 import { chunkArray, findValueByJob, timeConvert } from 'utils'
 import UserAvatar from 'components/UserAvatar';
-import Poster from 'components/Poster';
+import { MoviePoster } from 'components/Poster';
 import Modal from 'components/Modal';
 import CardLayout from 'components/CardLayout';
 
@@ -104,7 +104,7 @@ export default function MovieDetail(props) {
                   <div className="columns">
                      {movies.map(movie => (
                         <div className="column is-one-fifth" key={movie.id}>
-                           <Poster 
+                           <MoviePoster 
                               detailId={movie.id}
                               poster={movie.poster_path}
                               title={movie.title}
