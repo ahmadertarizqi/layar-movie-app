@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import CardLayout from 'components/CardLayout';
-import Poster from 'components/Poster'
+import { MoviePoster } from 'components/Poster'
 import API from 'services/movies';
 
 export default function Genres(props) {
@@ -86,7 +86,7 @@ export default function Genres(props) {
             <div className="columns is-multiline">
                {movies.map(movie => (
                   <div className="column is-one-fifth" key={movie.id}>
-                     <Poster
+                     <MoviePoster
                         detailId={movie.id}
                         poster={movie.poster_path}
                         title={movie.title}
