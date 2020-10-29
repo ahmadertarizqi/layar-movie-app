@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import API from 'services/movies';
-import { imgURL, youtubeEmbed } from '../../contants';
+import { youtubeEmbed } from '../../contants';
 import * as Icon from 'react-feather';
 import dayjs from 'dayjs';
-import { chunkArray, findValueByJob, timeConvert } from 'utils'
+import { chunkArray, findValueByJob, getImage, timeConvert } from 'utils'
 import UserAvatar from 'components/UserAvatar';
 import { MoviePoster } from 'components/Poster';
 import Modal from 'components/Modal';
@@ -145,13 +145,13 @@ export default function MovieDetail(props) {
 
    return (
       <div className="detail-content">
-         <div className="header-content" style={{ backgroundImage: `url(${imgURL + movieDetail.backdrop_path})` }}>
+         <div className="header-content" style={{ backgroundImage: `url(${getImage('backdrop') + movieDetail.backdrop_path})` }}>
             <button className="button btn-go-back" onClick={() => props.history.push('/movies')}>
                <Icon.ArrowLeft /> <span>Back to main</span>
             </button>
             <div className="columns is-multiline">
                <div className="column is-3 card-poster">
-                  <img className="img-poster without-info" src={`${imgURL + movieDetail.poster_path}`} alt={movieDetail.title} />
+                  <img className="img-poster without-info" src={`${getImage('movie') + movieDetail.poster_path}`} alt={movieDetail.title} />
                </div>
                <div className="column is-9">
                   <div className="movie-description">

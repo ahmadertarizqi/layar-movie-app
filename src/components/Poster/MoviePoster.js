@@ -1,30 +1,14 @@
 import React from 'react';
-import { imgURL } from '../../contants';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as Icon from 'react-feather';
 import dayjs from 'dayjs';
+import { getImage } from 'utils';
 
 export default function MoviePoster({ detailId, poster, title, releaseDate, rating }) {
-   const location = useLocation();
-   const currentUrl = location.pathname.split('/');
-
-   let tempLink;
-   switch (currentUrl[2]) {
-      case 'movies':
-         tempLink = '/movie';
-         break;
-      case 'tvshows':
-         tempLink = '/tvshows';
-         break;
-      default:
-         tempLink = '/movie';
-         break;
-   };
-
    return (
       <div className="card-poster">
-         <Link to={`${tempLink}/${detailId}`} className="anchor-link">
-            <img src={`${imgURL + poster}`} className="img-poster" loading="lazy" alt={title} />
+         <Link to={`movie/${detailId}`} className="anchor-link">
+            <img src={`${getImage('movie') + poster}`} className="img-poster" loading="lazy" alt={title} />
             <div className="poster-info-wrapper">
                <h5 className="is-size-6 cp-title">{title}</h5>
                <div className="poster-info">
