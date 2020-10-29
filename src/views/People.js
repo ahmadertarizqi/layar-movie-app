@@ -5,15 +5,23 @@ import CardLayout from 'components/CardLayout';
 
 export default function People() {
    const [peoples, setPeoples] = useState([]);
+   const [numberPage, setNumberPage] = useState(1);
+   const [isLoadMore, setLoadMore] = useState(false);
 
    useEffect(() => {
       const getPeoples = async () => {
-         const response = await API.getPeople();
-         setPeoples(response.results);
+         setLoadMore(true);
+         const response = await API.getPeople(numberPage);
+         setPeoples(prevPeoples => [...prevPeoples, ...response.results]);
+         setLoadMore(false);
       };
 
       getPeoples();
-   }, []);
+   }, [numberPage]);
+
+   const loadMorePeoples = () => {
+      setNumberPage(prevPage => prevPage + 1);
+   };
 
    return (
       <div className="movies-wrapper">
@@ -28,6 +36,12 @@ export default function People() {
                      />
                   </div>
                ))}
+            </div>
+            <div style={{ textAlign: 'center' }}>
+               <button className={`button ${isLoadMore ? 'is-loading' : ''}`} 
+                  onClick={() => loadMorePeoples()}>
+                  {isLoadMore ? 'Loading...' : 'Load More'}
+               </button>
             </div>
          </CardLayout>
       </div>

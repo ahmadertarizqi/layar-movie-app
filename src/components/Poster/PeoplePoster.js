@@ -8,7 +8,7 @@ export default function PeoplePoster({ peopleID, profileImage, name }) {
          <Link to={`people/${peopleID}`} className="anchor-link">
             <img src={`https://image.tmdb.org/t/p/w185/${profileImage}`} alt={name} />
             <div className="poster-info-wrapper">
-                  <h5 className="is-size-6 cp-title">{name}</h5>
+               <h5 className="is-size-6 cp-title">{name}</h5>
             </div>
          </Link>
       </div>
