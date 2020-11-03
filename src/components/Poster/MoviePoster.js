@@ -7,7 +7,7 @@ import { getImage } from 'utils';
 export default function MoviePoster({ detailId, poster, title, releaseDate, rating }) {
    return (
       <div className="card-poster">
-         <Link to={`movie/${detailId}`} className="anchor-link">
+         <Link to={`/movie/${detailId}`} className="anchor-link">
             <img src={`${getImage('movie') + poster}`} className="img-poster" loading="lazy" alt={title} />
             <div className="poster-info-wrapper">
                <h5 className="is-size-6 cp-title">{title}</h5>

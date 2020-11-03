@@ -12,13 +12,6 @@
       }
    }
 
-   .anchor-link {
-      background-color: $dark-color-500;
-      display: block;
-      color: #fff;
-      border-radius: 5px;
-   }
-
    .cp-title {
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -60,5 +53,16 @@
          border-top-left-radius: 5px;
          border-top-right-radius: 5px;
       }
+   }
+}
+
+.anchor-link {
+   background-color: $dark-color-500;
+   display: block;
+   color: #fff;
+   border-radius: 5px;
+
+   :hover {
+      color: #fff;
    }
 }
