@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PeoplePoster } from 'components/Poster';
 import API from 'services/movies';
 import CardLayout from 'components/CardLayout';
+import { Link } from 'react-router-dom';
 
 export default function People() {
    const [peoples, setPeoples] = useState([]);
@@ -11,7 +12,7 @@ export default function People() {
    useEffect(() => {
       const getPeoples = async () => {
          setLoadMore(true);
-         const response = await API.getPeople(numberPage);
+         const response = await API.getPeoples(numberPage);
          setPeoples(prevPeoples => [...prevPeoples, ...response.results]);
          setLoadMore(false);
       };
@@ -29,11 +30,13 @@ export default function People() {
             <div className="columns is-multiline">
                {peoples.map(people => (
                   <div key={people.id} className="column is-2">
-                     <PeoplePoster 
-                        peopleID={people.id}
-                        profileImage={people.profile_path}
-                        name={people.name}
-                     />
+                     <Link to={`/people/${people.id}`} className="anchor-link">
+                        <PeoplePoster 
+                           peopleID={people.id}
+                           profileImage={people.profile_path}
+                           name={people.name}
+                        />
+                     </Link>
                   </div>
                ))}
             </div>

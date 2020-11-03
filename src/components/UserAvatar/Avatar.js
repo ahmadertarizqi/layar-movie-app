@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import defaultImage from 'assets/placeholder-user.png';
-import { imgURL } from 'contants';
 import { getImage } from 'utils';
 
 export default function Avatar({ photo, name }) {

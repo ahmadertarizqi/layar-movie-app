@@ -13,9 +13,9 @@ const navigation = [
       link: '/movies'
    },
    {
-      name: 'People',
+      name: 'Peoples',
       icon: <Icon.Users />,
-      link: '/people'
+      link: '/peoples'
    },
    {
       name: 'Favorites',

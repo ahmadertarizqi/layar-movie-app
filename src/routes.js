@@ -6,6 +6,7 @@ import MoviesCategory from "views/movies/MoviesCategory";
 import MoviesContainer from "views/movies/MoviesContainer";
 import People from "views/People";
 import Genres from "views/Genres";
+import PeopleDetail from "views/PeopleDetail";
 
 const routes = [
    {
@@ -32,9 +33,14 @@ const routes = [
       component: MovieDetail
    },
    {
-      name: 'people',
-      path: '/people',
+      name: 'peoples',
+      path: '/peoples',
       component: People
+   },
+   {
+      name: 'people detail',
+      path: '/people/:peopleID',
+      component: PeopleDetail
    },
    {
       name: 'Genres',

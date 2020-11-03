@@ -39,7 +39,7 @@ export const getImage = (showType) => {
          imageURL += '/w500';
          break;
       case 'people':
-         imageURL += '/w185';
+         imageURL += '/w500';
          break;
       case 'backdrop':
          imageURL += '/w780';

@@ -74,11 +74,21 @@ async function getMoviesByGenre(genreID, numberPage = 1) {
    return response.data;
 }
 
-async function getPeople(numberPage = 1) {
+async function getPeoples(numberPage = 1) {
    const response = await getData(`${apiURL}/person/popular`, {
       params: {
          api_key: apiKEY,
          page: numberPage
+      }
+   });
+   return response.data;
+}
+
+async function getPeople(dataID) {
+   const response = await getData(`${apiURL}/person/${dataID}`, {
+      params: {
+         api_key: apiKEY,
+         append_to_response: 'external_ids,movie_credits'
       }
    });
    return response.data;
@@ -90,5 +100,6 @@ export default {
    getGenreMovie,
    getTrending,
    getMoviesByGenre,
+   getPeoples,
    getPeople
 };
