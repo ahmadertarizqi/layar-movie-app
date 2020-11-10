@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import API from 'services/movies';
 import { getImage } from 'utils';
+import { MoviePoster } from 'components/Poster';
 
 export default function PeopleDetail() {
    const { peopleID } = useParams();
@@ -16,6 +17,8 @@ export default function PeopleDetail() {
       getMovie();
 
    }, [peopleID]);
+
+   if(!people) return <div>Loading...</div>
 
    return (
       <div className="people-detail">
@@ -55,6 +58,26 @@ export default function PeopleDetail() {
                <div className="people-biography">
                   <h5 className="is-size-5">Biography</h5>
                   <p>{people.biography}</p>
+               </div>
+                        
+               <br />
+               <div className="block-section-biography">
+                  <h5 className="is-size-5">Starred In</h5>
+                  <div className="columns is-multiline">
+                     {people.movie_credits ? 
+                        people.movie_credits.cast.map(val => (
+                           <div className="column is-3" key={val.id}>
+                              <MoviePoster 
+                                 detailId={val.id}
+                                 poster={val.poster_path}
+                                 title={val.title}
+                                 releaseDate={val.release_data}
+                                 rating={val.vote_average}
+                              />
+                           </div>
+                        )) : <div>Loading</div>
+                     }
+                  </div>
                </div>
             </div>
          </div>
