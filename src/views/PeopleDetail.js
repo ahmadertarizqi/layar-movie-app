@@ -86,7 +86,7 @@ export default function PeopleDetail() {
                                     detailId={val.id}
                                     poster={val.poster_path}
                                     title={val.title}
-                                    releaseDate={val.release_data}
+                                    releaseDate={val.release_date}
                                     rating={val.vote_average}
                                  />
                               </div>
