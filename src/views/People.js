@@ -24,6 +24,8 @@ export default function People() {
       setNumberPage(prevPage => prevPage + 1);
    };
 
+   if(!peoples || peoples.length < 1) return <div>Loading....</div>
+
    return (
       <div className="movies-wrapper">
          <CardLayout title="Popular People">
