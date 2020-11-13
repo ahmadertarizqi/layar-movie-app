@@ -6,6 +6,7 @@ import NavigationRoute from './_nav';
 import 'styles/main.scss';
 
 import Routes from './routes';
+import { FavoriteProvider } from 'store/FavoriteContext';
 
 export default function App() {
   const toggleSidebar = () => {
@@ -14,25 +15,28 @@ export default function App() {
 
   return (
     <React.Fragment>
-      <Sidebar navigation={NavigationRoute} />
-      <div className="main-wrapper">
-        <Navbar toggleSidebar={toggleSidebar} />
-        <Switch>
-          {Routes.map((route, idx) => {
-            return route.component 
-            ? (
-              <Route key={idx} 
-                path={route.path} 
-                exact={route.exact}
-                render={(props) => (
-                  <route.component {...props} routes={route.routes} />
-                )}
-              />
-            ) : null
-          })}
-          <Redirect from="/" to="/home" />
-        </Switch>
-      </div>
+      <FavoriteProvider>
+        <Sidebar navigation={NavigationRoute} />
+        <div className="main-wrapper">
+          <Navbar toggleSidebar={toggleSidebar} />
+          <Switch>
+            {Routes.map((route, idx) => {
+              return route.component 
+              ? (
+                <Route key={idx} 
+                  path={route.path} 
+                  exact={route.exact}
+                  render={(props) => (
+                    <route.component {...props} routes={route.routes} />
+                  )}
+                />
+              ) : null
+            })}
+            <Redirect from="/" to="/home" />
+          </Switch>
+        </div>
+      </FavoriteProvider>
+
     </React.Fragment>
   );
 };

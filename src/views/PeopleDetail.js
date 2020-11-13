@@ -100,9 +100,6 @@ export default function PeopleDetail() {
                </div>
             </div>
          </div>
-         <div className="people-detail-body">
-            
-         </div>
       </div>
    )
 };
