@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import dayjs from 'dayjs';
 import API from 'services/movies';
-import { getImage, truncateString } from 'utils';
+import { getImage, getGender, truncateString } from 'utils';
 import { MoviePoster } from 'components/Poster';
 
 export default function PeopleDetail() {
@@ -30,16 +31,16 @@ export default function PeopleDetail() {
                   <div className="img-poster">
                      <img src={`${getImage('people') + people.profile_path}`} alt={people.name} />
                   </div>
-                  <div className="people-info">
-                     <h5 className="is-size-5">Personal Info</h5>
+                  <div className="people-info mt-4">
+                     <h5 className="is-size-5 mb-3">Personal Info</h5>
                      <div className="block-list">
                         Known For: <span className="value">{people.known_for_department}</span>
                      </div>
                      <div className="block-list">
-                        Gender: <span className="value">{people.gender}</span>
+                        Gender: <span className="value">{getGender(people.gender)}</span>
                      </div>
                      <div className="block-list">
-                        Birthday: <span className="value">{people.birthday}</span>
+                        Birthday: <span className="value">{dayjs(people.birthday).format("DD MMM YYYY")}</span>
                      </div>
                      <div className="block-list">
                         Place of Birth: <span className="value">{people.place_of_birth}</span>
@@ -57,27 +58,29 @@ export default function PeopleDetail() {
                   </div>
                </div>
                <div className="column is-9">
-                  <h3 className="text-title is-size-3" style={{ color: '#fff'}}>{people.name}</h3>
+                  <h3 className="text-title is-size-3 mb-3" style={{ color: '#fff'}}>{people.name}</h3>
                   <div className="people-biography">
                      <h5 className="is-size-5">Biography</h5>
-                     <p>{!isReadMoreText 
-                           ? truncateString(people.biography, limitText, ".....") 
+                     <p>
+                        {!isReadMoreText 
+                           ? truncateString(people.biography, limitText, ".....  ") 
                            : people.biography 
                         }
-                     </p>
 
-                     {people.biography.split(" ").length > limitText
-                        ? <button className="" 
-                              onClick={() => setReadMoreText(!isReadMoreText)}>
-                              {isReadMoreText ? "Read Less" : "Read More"}
-                           </button>
-                        : null
-                     }
+                        {people.biography.split(" ").length > limitText
+                           ? <button className="" 
+                                 onClick={() => setReadMoreText(!isReadMoreText)}>
+                                 {isReadMoreText ? "Read Less" : "Read More"}
+                              </button>
+                           : null
+                        }
+                     </p>
                   </div>
+
                   <br />
 
                   <div className="block-section-biography">
-                     <h5 className="is-size-5">Starred In</h5>
+                     <h5 className="is-size-5 mb-3">Starred In</h5>
                      <div className="columns is-multiline">
                         {people.movie_credits ? 
                            people.movie_credits.cast.map(val => (

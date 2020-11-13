@@ -145,11 +145,12 @@
       font-size: 16px;
       font-weight: 600;
       color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 13px;
 
       > .value {
          color: $dark-text-color;
          font-weight: 500;
-         display: inline;
+         display: block;
       }
 
       > ul .value {

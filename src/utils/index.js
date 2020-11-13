@@ -52,6 +52,17 @@ export const getImage = (showType) => {
    return imageURL;
 };
 
+export const getGender = (genderID) => {
+   switch(genderID) {
+      case 1:
+         return "Female";
+      case 2:
+         return "Male";
+      default:
+         return "Gender is None";
+   };
+};
+
 export const truncateString = (text, limit, afterText) => {
    if(!text || !limit) return;
    
