@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import API from 'services/movies';
 import { youtubeEmbed } from '../../contants';
@@ -10,11 +10,15 @@ import { MoviePoster } from 'components/Poster';
 import Modal from 'components/Modal';
 import CardLayout from 'components/CardLayout';
 
+import { FavoriteContext } from 'store/FavoriteContext';
 
 export default function MovieDetail(props) {
    const { movieID } = useParams();
    const [movieDetail, setMovieDetail] = useState({});
    const [isOpen, setIsOpen] = useState(false);
+
+   const favoriteStore = useContext(FavoriteContext);
+   const { addFavoriteMovie } = favoriteStore;
 
    useEffect(() => {
       const getMovieDetail = async () => {
@@ -186,6 +190,9 @@ export default function MovieDetail(props) {
                            >
                               <Icon.Play fill="#002068" color="#002068" /> Watch Trailer
                            </button>
+                        </div>
+                        <div className="item">
+                           <button onClick={() => addFavoriteMovie(movieDetail)}>Add To Favorites</button>
                         </div>
                      </div>
                      <h5 className="text-title is-size-5">Overview</h5>

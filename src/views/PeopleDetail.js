@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
 import API from 'services/movies';
 import { getImage, getGender, truncateString } from 'utils';
 import { MoviePoster } from 'components/Poster';
+import { FavoriteContext } from 'store/FavoriteContext';
 
 export default function PeopleDetail() {
    const { peopleID } = useParams();
    const [people, setPeople] = useState(null);
    const [isReadMoreText, setReadMoreText] = useState(false);
    const [limitText] = useState(175);
+
+   const favoriteStore = useContext(FavoriteContext);
+   const { addFavoritePeople } = favoriteStore;
 
    useEffect(() => {
       const getMovie = async () => {
@@ -59,6 +63,7 @@ export default function PeopleDetail() {
                </div>
                <div className="column is-9">
                   <h3 className="text-title is-size-3 mb-3" style={{ color: '#fff'}}>{people.name}</h3>
+                  <button onClick={() => addFavoritePeople(people)}>Add To Favorites</button>
                   <div className="people-biography">
                      <h5 className="is-size-5">Biography</h5>
                      <p>
