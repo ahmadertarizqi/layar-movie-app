@@ -31,6 +31,7 @@ aside {
          font-size: 14px;
          margin-bottom: 15px;
          text-decoration: none;
+         position: relative;
 
          svg {
             margin-bottom: 6px;
@@ -38,6 +39,20 @@ aside {
 
          span {
             display: inline-block;
+         }
+
+         .badge-count {
+            position: absolute;
+            top: 4px;
+            right: 10px;
+            background-color: #fff;
+            padding: 5px 7px;
+            line-height: 1;
+            border-radius: 50px;
+            font-size: 13px;
+            color: #34495e;
+            border: 1px solid #495c6e;
+            font-weight: 600;
          }
       }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export default function Sidebar({ navigation }) {
+export default function Sidebar({ navigation, favoriteTotal }) {
    const location = useLocation();
    const renderedSideMenu = navigation.map(nav => {
       const currentUrl = location.pathname.split('/');
@@ -10,7 +10,10 @@ export default function Sidebar({ navigation }) {
 
       return (
          <li className={`sidebar-menu-item ${isActive}`} key={nav.name}>
-            <Link to={nav.link}>{nav.icon} <span>{nav.name}</span></Link>
+            <Link to={nav.link}>
+               {nav.icon} <span>{nav.name}</span>
+               {nav.name === 'Favorites' && <span className="badge-count">{favoriteTotal}</span>}
+            </Link>
          </li>
       );
    });
