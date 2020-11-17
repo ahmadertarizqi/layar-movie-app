@@ -5,6 +5,7 @@ import API from 'services/movies';
 import { getImage, getGender, truncateString } from 'utils';
 import { MoviePoster } from 'components/Poster';
 import { FavoriteContext } from 'store/FavoriteContext';
+import { PEOPLE_CONSTANT } from 'contants';
 
 export default function PeopleDetail() {
    const { peopleID } = useParams();
@@ -13,7 +14,7 @@ export default function PeopleDetail() {
    const [limitText] = useState(175);
 
    const favoriteStore = useContext(FavoriteContext);
-   const { addFavoritePeople } = favoriteStore;
+   const { addToFavorite } = favoriteStore;
 
    useEffect(() => {
       const getMovie = async () => {
@@ -63,7 +64,7 @@ export default function PeopleDetail() {
                </div>
                <div className="column is-9">
                   <h3 className="text-title is-size-3 mb-3" style={{ color: '#fff'}}>{people.name}</h3>
-                  <button onClick={() => addFavoritePeople(people)}>Add To Favorites</button>
+                  <button onClick={() => addToFavorite(PEOPLE_CONSTANT, people)}>Add To Favorites</button>
                   <div className="people-biography">
                      <h5 className="is-size-5">Biography</h5>
                      <p>

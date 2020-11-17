@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import API from 'services/movies';
-import { youtubeEmbed } from '../../contants';
+import { MOVIE_CONSTANT, youtubeEmbed } from '../../contants';
 import * as Icon from 'react-feather';
 import dayjs from 'dayjs';
 import { chunkArray, findValueByJob, getImage, timeConvert } from 'utils'
@@ -18,7 +18,7 @@ export default function MovieDetail(props) {
    const [isOpen, setIsOpen] = useState(false);
 
    const favoriteStore = useContext(FavoriteContext);
-   const { addFavoriteMovie } = favoriteStore;
+   const { addToFavorite } = favoriteStore;
 
    useEffect(() => {
       const getMovieDetail = async () => {
@@ -192,7 +192,7 @@ export default function MovieDetail(props) {
                            </button>
                         </div>
                         <div className="item">
-                           <button onClick={() => addFavoriteMovie(movieDetail)}>Add To Favorites</button>
+                           <button onClick={() => addToFavorite(MOVIE_CONSTANT, movieDetail)}>Add To Favorites</button>
                         </div>
                      </div>
                      <h5 className="text-title is-size-5">Overview</h5>

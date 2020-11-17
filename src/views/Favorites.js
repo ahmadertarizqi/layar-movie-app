@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import CardLayout from 'components/CardLayout';
 import { MoviePoster, PeoplePoster } from 'components/Poster';
 import * as Icon from 'react-feather';
+import { MOVIE_CONSTANT, PEOPLE_CONSTANT } from 'contants';
 
 function Favorites() {
    const favorites = useContext(FavoriteContext);
    const { 
-      state: { movieFavorites, peopleFavorites }
+      state: { movieFavorites, peopleFavorites },
+      deleteFromFavorite
    } = favorites;
 
    return (
@@ -25,6 +27,7 @@ function Favorites() {
                            releaseDate={movie.release_date}
                            rating={movie.vote_average}
                         />
+                        <button onClick={() => deleteFromFavorite(MOVIE_CONSTANT, movie.id)}>Delete</button>
                      </div>
                   ))}
                </div>
@@ -49,6 +52,7 @@ function Favorites() {
                               name={people.name}
                            />
                         </Link>
+                        <button onClick={() => deleteFromFavorite(PEOPLE_CONSTANT, people.id)}>Delete</button>
                      </div>
                   ))}
                </div>
