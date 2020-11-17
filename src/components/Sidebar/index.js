@@ -12,7 +12,10 @@ export default function Sidebar({ navigation, favoriteTotal }) {
          <li className={`sidebar-menu-item ${isActive}`} key={nav.name}>
             <Link to={nav.link}>
                {nav.icon} <span>{nav.name}</span>
-               {nav.name === 'Favorites' && <span className="badge-count">{favoriteTotal}</span>}
+               {favoriteTotal > 0 
+                  ? nav.name === 'Favorites' && <div className="badge-count">{favoriteTotal}</div>
+                  : null
+               }
             </Link>
          </li>
       );
@@ -31,5 +34,6 @@ export default function Sidebar({ navigation, favoriteTotal }) {
 };
 
 Sidebar.propTypes = {
-   navigation: PropTypes.array.isRequired
+   navigation: PropTypes.array.isRequired,
+   favoriteTotal: PropTypes.number
 }
