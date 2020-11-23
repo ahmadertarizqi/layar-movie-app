@@ -94,6 +94,19 @@ async function getPeople(dataID) {
    return response.data;
 }
 
+async function getSearch(keyword) {
+   if(keyword) {
+      const response = await getData(`${apiURL}/search/multi`, {
+         params: {
+            api_key: apiKEY,
+            query: keyword,
+            include_adult: false,
+         }
+      });
+      return response.data;
+   }
+}
+
 export default {
    getMovies, 
    getMovie,
@@ -101,5 +114,6 @@ export default {
    getTrending,
    getMoviesByGenre,
    getPeoples,
-   getPeople
+   getPeople,
+   getSearch,
 };

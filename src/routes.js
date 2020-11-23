@@ -7,6 +7,7 @@ import MoviesContainer from "views/movies/MoviesContainer";
 import People from "views/People";
 import Genres from "views/Genres";
 import PeopleDetail from "views/PeopleDetail";
+import SearchResults from "views/SearchResults";
 
 const routes = [
    {
@@ -51,6 +52,11 @@ const routes = [
       name: 'favorites',
       path: '/favorites',
       component: Favorites
+   },
+   {
+      name: 'Search Results',
+      path: '/search',
+      component: SearchResults
    }
 ];
 

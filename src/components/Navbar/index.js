@@ -1,7 +1,15 @@
-import React from 'react';
+import React,  { useState } from 'react';
 import * as Icon from 'react-feather';
 
-export default function Navbar({ toggleSidebar }) {
+export default function Navbar({ toggleSidebar, searchSubmit }) {
+   const [inputValue, setInputValue] = useState('');
+   
+   const onFormSubmit = (ev) => {
+      ev.preventDefault();
+      searchSubmit(inputValue);
+      setInputValue('');
+   };
+
    return (
       <header>
          <nav className="navbar-wrapper">
@@ -9,10 +17,15 @@ export default function Navbar({ toggleSidebar }) {
                <button className="button btn-side-toggle" onClick={() => toggleSidebar()}><Icon.Menu /></button>
             </div>
             <div className="navbar-action-right">
-               <form className="form-searchbar">
+               <form className="form-searchbar" onSubmit={onFormSubmit}>
                   <div className="control form-custom">
                      <Icon.Search className="icon-search" />
-                     <input className="input" type="text" placeholder="Search for a movie, tv show, person..." />
+                     <input 
+                        className="input" 
+                        type="text"
+                        value={inputValue}
+                        onChange={(ev) => setInputValue(ev.target.value)}
+                        placeholder="Search for a movie, tv show, person..." />
                   </div>
                </form>
             </div>
