@@ -10,7 +10,7 @@ export function FavoriteProvider({ children }) {
    const [peopleFavorites, setPeopleFavorites] = useState(initialPeoples);
 
    useEffect(() => {
-      console.log("local storage is updated");
+      // console.log("local storage is updated");
       window.localStorage.setItem("favorite-movies", JSON.stringify(movieFavorites));
       window.localStorage.setItem("favorite-peoples", JSON.stringify(peopleFavorites));
    }, [movieFavorites, peopleFavorites]);
