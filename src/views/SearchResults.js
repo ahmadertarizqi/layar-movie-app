@@ -7,9 +7,9 @@ import { MoviePoster, PeoplePoster } from 'components/Poster';
 export default function SearchResults() {
    const searchConsumer = useContext(SearchContext);
    const { 
-      state: { searchResults } 
+      state: { searchResults, searchKeyword } 
    } = searchConsumer;
-   console.log(searchResults);
+   // console.log(searchConsumer, "is results");
 
    if(!searchResults || searchResults.length < 1) {
       return <div>Loading...</div>
@@ -17,7 +17,7 @@ export default function SearchResults() {
 
    return (
       <div>
-         <CardLayout title={`Search Results For: ${searchResults.length}`}>
+         <CardLayout title={`Search Results For: "${searchKeyword}" [${searchResults.length}]`}>
             <div className="columns is-multiline">
                {searchResults.map((result, idx) => {
                   switch(result.media_type) {

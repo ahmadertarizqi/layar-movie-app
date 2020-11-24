@@ -4,6 +4,7 @@ export const SearchContext = React.createContext();
 
 export function SearchProvider({ children }) {
    const [searchResults, setSearchResults] = useState([]);
+   const [searchKeyword, setSearchKeyword] = useState('');
    
    const updateSearchResults = (payload) => {
       setSearchResults(payload);
@@ -11,8 +12,12 @@ export function SearchProvider({ children }) {
 
    return (
       <SearchContext.Provider value={{
-         state: { searchResults },
+         state: { 
+            searchResults,
+            searchKeyword 
+         },
          updateSearchResults,
+         setSearchKeyword,
       }}>
          {children}
       </SearchContext.Provider>

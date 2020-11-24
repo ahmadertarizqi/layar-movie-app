@@ -28,6 +28,7 @@ export default function App() {
   const onSearch = (keyword) => {
     setRedirectToSearch(true);
     setSearchKeyword(keyword);
+    searchConsumer.setSearchKeyword(keyword);
 
     if(!redirectToSearch) {
       history.push('/search');
