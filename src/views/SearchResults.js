@@ -1,15 +1,23 @@
-import React, { useContext } from 'react';
-import { SearchContext } from 'store/SearchContext';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import CardLayout from 'components/CardLayout';
 import { MoviePoster, PeoplePoster } from 'components/Poster';
+import { useQueryParams } from 'utils';
+import API from 'services/movies';
 
 export default function SearchResults() {
-   const searchConsumer = useContext(SearchContext);
-   const { 
-      state: { searchResults, searchKeyword } 
-   } = searchConsumer;
-   // console.log(searchConsumer, "is results");
+   const [searchResults, setSearchResults] = useState([]);
+   const queryParams = useQueryParams(useLocation().search);
+   const getParams = queryParams.get("query");
+
+   useEffect(() => {
+      const getSearch = async () => {
+         const response = await API.getSearch(getParams);
+         setSearchResults(response.results);
+      };
+
+      getSearch();
+   }, [getParams]);
 
    if(!searchResults || searchResults.length < 1) {
       return <div>Loading...</div>
@@ -17,7 +25,7 @@ export default function SearchResults() {
 
    return (
       <div>
-         <CardLayout title={`Search Results For: "${searchKeyword}" [${searchResults.length}]`}>
+         <CardLayout title={`Search Results For: "${getParams}" [${searchResults.length}]`}>
             <div className="columns is-multiline">
                {searchResults.map((result, idx) => {
                   switch(result.media_type) {

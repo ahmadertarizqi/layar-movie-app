@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Sidebar from 'components/Sidebar';
 import Navbar from 'components/Navbar';
@@ -7,18 +7,14 @@ import 'styles/main.scss';
 
 import Routes from './routes';
 import { FavoriteContext } from 'store/FavoriteContext';
-import { SearchContext } from 'store/SearchContext';
-import API from 'services/movies';
 
 export default function App() {
   const favorites = useContext(FavoriteContext);
-  const searchConsumer = useContext(SearchContext);
   const { 
     state: { movieFavorites, peopleFavorites }
   } = favorites;
+  
   const history = useHistory();
-
-  const [searchKeyword, setSearchKeyword] = useState("");
   const [redirectToSearch, setRedirectToSearch] = useState(false);
 
   const toggleSidebar = () => {
@@ -27,26 +23,10 @@ export default function App() {
   
   const onSearch = (keyword) => {
     setRedirectToSearch(true);
-    setSearchKeyword(keyword);
-    searchConsumer.setSearchKeyword(keyword);
-
     if(!redirectToSearch) {
-      history.push('/search');
+      history.push(`/search?query=${keyword}`);
     }
   };
-  
-  useEffect(() => {
-    const getSearch = async () => {
-      const response = await API.getSearch(searchKeyword);
-      searchConsumer.updateSearchResults(response.results);
-    };
-
-    if(redirectToSearch) {
-      getSearch();
-    }
-    // unsubscribe redirect
-    return () => setRedirectToSearch(false);
-  }, [searchKeyword, redirectToSearch, searchConsumer]);
 
   return (
     <React.Fragment>
