@@ -24,7 +24,6 @@ export function FavoriteProvider({ children }) {
          rating: payload.vote_average,
       };
       setMovieFavorites(movies => [...movies, newMovie]);
-      alert("Movie Has Been Added in Favorites");
    };
 
    const deleteFavoriteMovie = (id) => {
@@ -41,7 +40,6 @@ export function FavoriteProvider({ children }) {
          name: payload.name,
       };
       setPeopleFavorites(peoples => [...peoples, newPeople]);
-      alert("People Has Been Added in Favorites");
    };
 
    const deleteFavoritePeople = (id) => {

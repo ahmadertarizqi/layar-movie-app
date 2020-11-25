@@ -9,6 +9,7 @@ import UserAvatar from 'components/UserAvatar';
 import { MoviePoster } from 'components/Poster';
 import Modal from 'components/Modal';
 import CardLayout from 'components/CardLayout';
+import { toast, ToastContainer } from 'react-toastify';
 
 import { FavoriteContext } from 'store/FavoriteContext';
 
@@ -191,8 +192,28 @@ export default function MovieDetail(props) {
                               <Icon.Play fill="#002068" color="#002068" /> Watch Trailer
                            </button>
                         </div>
+                        <ToastContainer
+                           position="top-right"
+                           hideProgressBar={false}
+                           autoClose={false}
+                           newestOnTop={true}
+                           closeOnClick={false}
+                           draggable={false}
+                           rtl={false}
+                        />
                         <div className="item">
-                           <button onClick={() => addToFavorite(MOVIE_CONSTANT, movieDetail)}>Add To Favorites</button>
+                           <button onClick={() => {
+                              addToFavorite(MOVIE_CONSTANT, movieDetail);
+                              toast.info("Added successfully to favorites",{
+                                 position: "top-right",
+                                 autoClose: 3500,
+                                 hideProgressBar: false,
+                                 closeOnClick: true,
+                                 pauseOnHover: true,
+                                 draggable: true,
+                                 progress: undefined,
+                              });
+                           }}>Add To Favorites</button>
                         </div>
                      </div>
                      <h5 className="text-title is-size-5">Overview</h5>

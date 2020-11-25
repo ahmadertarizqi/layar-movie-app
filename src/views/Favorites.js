@@ -5,6 +5,7 @@ import CardLayout from 'components/CardLayout';
 import { MoviePoster, PeoplePoster } from 'components/Poster';
 import * as Icon from 'react-feather';
 import { MOVIE_CONSTANT, PEOPLE_CONSTANT } from 'contants';
+import { toast, ToastContainer } from 'react-toastify';
 
 function Favorites() {
    const favorites = useContext(FavoriteContext);
@@ -27,7 +28,18 @@ function Favorites() {
                            releaseDate={movie.release_date}
                            rating={movie.vote_average}
                         />
-                        <button onClick={() => deleteFromFavorite(MOVIE_CONSTANT, movie.id)}>Delete</button>
+                        <button onClick={() => {
+                           deleteFromFavorite(MOVIE_CONSTANT, movie.id);
+                           toast.info("Movie Favorite Deleted",{
+                              position: "top-right",
+                              autoClose: 2500,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                           });
+                        }}>Delete</button>
                      </div>
                   ))}
                </div>
@@ -38,6 +50,15 @@ function Favorites() {
             }
          </CardLayout>
 
+         <ToastContainer
+            position="top-right"
+            hideProgressBar={false}
+            autoClose={false}
+            newestOnTop={true}
+            closeOnClick={false}
+            draggable={false}
+            rtl={false}
+         />
          <hr style={{ height: '1px', backgroundColor: '#fff3' }} />
 
          <CardLayout title={`People Favorites [${peopleFavorites.length}]`}>
@@ -52,7 +73,18 @@ function Favorites() {
                               name={people.name}
                            />
                         </Link>
-                        <button onClick={() => deleteFromFavorite(PEOPLE_CONSTANT, people.id)}>Delete</button>
+                        <button onClick={() => {
+                           deleteFromFavorite(PEOPLE_CONSTANT, people.id);
+                           toast.info("People Favorite Deleted",{
+                              position: "top-right",
+                              autoClose: 2500,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                           });
+                        }}>Delete</button>
                      </div>
                   ))}
                </div>

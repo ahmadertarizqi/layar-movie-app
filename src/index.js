@@ -5,6 +5,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { FavoriteProvider } from 'store/FavoriteContext';
 
+import 'react-toastify/dist/ReactToastify.min.css';
+
 ReactDOM.render(
   <React.StrictMode>
     <FavoriteProvider>
