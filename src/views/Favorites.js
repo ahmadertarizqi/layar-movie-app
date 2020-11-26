@@ -5,7 +5,7 @@ import CardLayout from 'components/CardLayout';
 import { MoviePoster, PeoplePoster } from 'components/Poster';
 import * as Icon from 'react-feather';
 import { MOVIE_CONSTANT, PEOPLE_CONSTANT } from 'contants';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 function Favorites() {
    const favorites = useContext(FavoriteContext);
@@ -50,15 +50,6 @@ function Favorites() {
             }
          </CardLayout>
 
-         <ToastContainer
-            position="top-right"
-            hideProgressBar={false}
-            autoClose={false}
-            newestOnTop={true}
-            closeOnClick={false}
-            draggable={false}
-            rtl={false}
-         />
          <hr style={{ height: '1px', backgroundColor: '#fff3' }} />
 
          <CardLayout title={`People Favorites [${peopleFavorites.length}]`}>

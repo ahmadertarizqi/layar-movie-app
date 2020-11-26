@@ -6,7 +6,7 @@ import { getImage, getGender, truncateString } from 'utils';
 import { MoviePoster } from 'components/Poster';
 import { FavoriteContext } from 'store/FavoriteContext';
 import { PEOPLE_CONSTANT } from 'contants';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export default function PeopleDetail() {
    const { peopleID } = useParams();
@@ -93,19 +93,8 @@ export default function PeopleDetail() {
                   </div>
                </div>
                <div className="column is-9">
-                  <ToastContainer
-                     position="top-right"
-                     hideProgressBar={false}
-                     autoClose={false}
-                     newestOnTop={true}
-                     closeOnClick={false}
-                     draggable={false}
-                     rtl={false}
-                  />
                   <h3 className="text-title is-size-3 mb-3" style={{ color: '#fff'}}>{people.name}</h3>
-                  <button onClick={() => {
-                     addToFavoriteHandler(people);
-                  }}>Add To Favorites</button>
+                  <button onClick={() => addToFavoriteHandler(people)}>Add To Favorites</button>
                   <div className="people-biography">
                      <h5 className="is-size-5">Biography</h5>
                      <p>

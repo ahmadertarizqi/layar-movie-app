@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Sidebar from 'components/Sidebar';
 import Navbar from 'components/Navbar';
+import { ToastContainer } from 'react-toastify';
 import NavigationRoute from './_nav';
 import 'styles/main.scss';
 
@@ -45,6 +46,17 @@ export default function App() {
           <Redirect from="/" to="/home" />
         </Switch>
       </div>
+      
+      {/* react-toastify-container */}
+      <ToastContainer
+        position="top-right"
+        hideProgressBar={false}
+        autoClose={false}
+        newestOnTop={true}
+        closeOnClick={false}
+        draggable={false}
+        rtl={false}
+      />
     </React.Fragment>
   );
 };

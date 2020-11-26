@@ -9,7 +9,7 @@ import UserAvatar from 'components/UserAvatar';
 import { MoviePoster } from 'components/Poster';
 import Modal from 'components/Modal';
 import CardLayout from 'components/CardLayout';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { FavoriteContext } from 'store/FavoriteContext';
 
@@ -237,15 +237,6 @@ export default function MovieDetail(props) {
                </div>
             </div>
          </div>
-         <ToastContainer
-            position="top-right"
-            hideProgressBar={false}
-            autoClose={false}
-            newestOnTop={true}
-            closeOnClick={false}
-            draggable={false}
-            rtl={false}
-         />
          <div className="body-content">
             {movieDetail.credits && (
                renderCast()
