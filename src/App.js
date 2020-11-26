@@ -15,17 +15,13 @@ export default function App() {
   } = favorites;
   
   const history = useHistory();
-  const [redirectToSearch, setRedirectToSearch] = useState(false);
 
   const toggleSidebar = () => {
     document.body.classList.toggle('sidebar-closed');
   }
   
   const onSearch = (keyword) => {
-    setRedirectToSearch(true);
-    if(!redirectToSearch) {
-      history.push(`/search?query=${keyword}`);
-    }
+    history.push(`/search?query=${keyword}`);
   };
 
   return (
