@@ -15,7 +15,10 @@ export default function PeopleDetail() {
    const [limitText] = useState(175);
 
    const favoriteStore = useContext(FavoriteContext);
-   const { addToFavorite } = favoriteStore;
+   const {
+      state: { peopleFavorites }, 
+      addToFavorite,
+   } = favoriteStore;
 
    useEffect(() => {
       const getMovie = async () => {
@@ -25,6 +28,33 @@ export default function PeopleDetail() {
       getMovie();
 
    }, [peopleID]);
+
+   const addToFavoriteHandler = (payload) => {
+      const peopleArr = [...peopleFavorites];
+      const findIdx = peopleArr.findIndex(people => people.id === payload.id);
+      if(findIdx === -1) {
+         addToFavorite(PEOPLE_CONSTANT, payload);
+         toast.info("Added people to favorites list",{
+            position: "top-right",
+            autoClose: 3500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+         });
+      } else {
+         toast.info("People is already",{
+            position: "top-right",
+            autoClose: 3500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+         });
+      }
+   };
 
    if(!people) return <div>Loading...</div>
 
@@ -74,16 +104,7 @@ export default function PeopleDetail() {
                   />
                   <h3 className="text-title is-size-3 mb-3" style={{ color: '#fff'}}>{people.name}</h3>
                   <button onClick={() => {
-                     addToFavorite(PEOPLE_CONSTANT, people);
-                     toast.info("Added successfully to favorites",{
-                        position: "top-right",
-                        autoClose: 3500,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                     });
+                     addToFavoriteHandler(people);
                   }}>Add To Favorites</button>
                   <div className="people-biography">
                      <h5 className="is-size-5">Biography</h5>

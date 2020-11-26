@@ -19,7 +19,10 @@ export default function MovieDetail(props) {
    const [isOpen, setIsOpen] = useState(false);
 
    const favoriteStore = useContext(FavoriteContext);
-   const { addToFavorite } = favoriteStore;
+   const {
+      state: { movieFavorites }, 
+      addToFavorite,
+   } = favoriteStore;
 
    useEffect(() => {
       const getMovieDetail = async () => {
@@ -30,6 +33,38 @@ export default function MovieDetail(props) {
       getMovieDetail();
       window.scroll({ top: 0, left: 0, behavior: 'smooth' });
    }, [movieID]);
+
+   const handleCloseModal = () => {
+      setIsOpen(false);
+   };
+
+   const addToFavoriteHandler = (payload) => {
+      const movieArr = [...movieFavorites];
+      const findIdx = movieArr.findIndex(movie => movie.id === payload.id);
+      // check if exist from localstorage
+      if(findIdx === -1) {
+         addToFavorite(MOVIE_CONSTANT, payload);
+         toast.info("Added movie to favorites list",{
+            position: "top-right",
+            autoClose: 3500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+         });
+      } else {
+         toast.info("Movie is already", {
+            position: "top-right",
+            autoClose: 3500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+         });
+      }
+   };
 
    const renderCredits = () => {
       if (movieDetail.credits) {
@@ -125,10 +160,6 @@ export default function MovieDetail(props) {
       }
    };
 
-   const handleCloseModal = () => {
-      setIsOpen(false);
-   };
-
    const renderVideoTrailer = () => {
       const { results: trailer } = movieDetail.videos;
       if(trailer.length > 0) {
@@ -192,28 +223,8 @@ export default function MovieDetail(props) {
                               <Icon.Play fill="#002068" color="#002068" /> Watch Trailer
                            </button>
                         </div>
-                        <ToastContainer
-                           position="top-right"
-                           hideProgressBar={false}
-                           autoClose={false}
-                           newestOnTop={true}
-                           closeOnClick={false}
-                           draggable={false}
-                           rtl={false}
-                        />
                         <div className="item">
-                           <button onClick={() => {
-                              addToFavorite(MOVIE_CONSTANT, movieDetail);
-                              toast.info("Added successfully to favorites",{
-                                 position: "top-right",
-                                 autoClose: 3500,
-                                 hideProgressBar: false,
-                                 closeOnClick: true,
-                                 pauseOnHover: true,
-                                 draggable: true,
-                                 progress: undefined,
-                              });
-                           }}>Add To Favorites</button>
+                           <button onClick={() => addToFavoriteHandler(movieDetail)}>Add To Favorites</button>
                         </div>
                      </div>
                      <h5 className="text-title is-size-5">Overview</h5>
@@ -226,6 +237,15 @@ export default function MovieDetail(props) {
                </div>
             </div>
          </div>
+         <ToastContainer
+            position="top-right"
+            hideProgressBar={false}
+            autoClose={false}
+            newestOnTop={true}
+            closeOnClick={false}
+            draggable={false}
+            rtl={false}
+         />
          <div className="body-content">
             {movieDetail.credits && (
                renderCast()
