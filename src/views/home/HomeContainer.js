@@ -41,12 +41,9 @@ export default function Browse() {
          <BoxGenre data={genresMovie}>
             {genresMovie.map(genre => (
                <BoxGenreItem key={genre.id}>
-                  <Link to={{
-                     pathname: `/genres/${genre.id}`,
-                     state: {
-                        currentGenrePage: genre.name
-                     }
-                  }} className="box-genre-item-value">
+                  <Link 
+                     to={`/genres/${genre.id}-${genre.name.toLowerCase().replace(' ','-')}`} 
+                     className="box-genre-item-value">
                      {genre.name}
                   </Link>
                </BoxGenreItem>

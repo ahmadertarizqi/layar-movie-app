@@ -5,13 +5,14 @@ import { MoviePoster } from 'components/Poster'
 import API from 'services/movies';
 
 export default function Genres(props) {
-   const { state } = props.location;
    const { genreID } = useParams();
+   const splitGenre = genreID.split("-");
+   const currentGenreName = splitGenre.slice(1).join(" ");
    // const query = useQueryParams(useLocation().search);
    const [movies, setMovies] = useState([]);
    const [genreList, setGenreList] = useState([]);
-   const [genreChange, setGenreChange] = useState(genreID);
-   const [currentGenre, setCurrentGenre] = useState(state.currentGenrePage);
+   const [genreChange, setGenreChange] = useState(splitGenre[0]);
+   const [currentGenre, setCurrentGenre] = useState(currentGenreName);
    const [numberPage, setNumberPage] = useState(1);
    const [isLoadMore, setLoadmore] = useState(false);
 
