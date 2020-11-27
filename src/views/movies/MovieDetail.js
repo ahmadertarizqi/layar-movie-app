@@ -113,18 +113,19 @@ export default function MovieDetail(props) {
                      {creditsCast.map((cast, idx) => (
                         <div className="column is-3" key={idx}>
                            {cast.map(val => (
-                              <UserAvatar
-                                 key={val.id}
-                                 photo={val.profile_path}
-                                 castName={val.name}
-                                 characterName={val.character}
-                              >
-                                 <h6 className="text-title is-size-7">Name</h6>
-                                 <p className="cast-name">{val.name ? val.name : '--'}</p>
-                                 <div className="divider"></div>
-                                 <h6 className="text-title is-size-7">Character</h6>
-                                 <p className="character-name">{val.character ? val.character : '--'}</p>
-                              </UserAvatar>
+                              <Link to={`/people/${val.id}`} key={val.id} className="is-block has-text-white">
+                                 <UserAvatar
+                                    photo={val.profile_path}
+                                    castName={val.name}
+                                    characterName={val.character}
+                                 >
+                                    <h6 className="text-title is-size-7">Name</h6>
+                                    <p className="cast-name">{val.name ? val.name : '--'}</p>
+                                    <div className="divider"></div>
+                                    <h6 className="text-title is-size-7">Character</h6>
+                                    <p className="character-name">{val.character ? val.character : '--'}</p>
+                                 </UserAvatar>
+                              </Link>
                            ))}
                         </div>
                      ))}
@@ -198,7 +199,9 @@ export default function MovieDetail(props) {
                            {movieDetail.genres ? (
                               movieDetail.genres.map(genre => (
                                  <li key={genre.id}>
-                                    <Link to={`/${genre.name}`}>{genre.name}</Link>
+                                    <Link to={`/genres/${genre.id}-${genre.name.toLowerCase().replace(' ','-')}`}>
+                                       {genre.name}
+                                    </Link>
                                  </li>
                               ))
                            ) : null}
