@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import CardLayout from 'components/CardLayout';
 import { MoviePoster } from 'components/Poster'
 import API from 'services/movies';
 
-export default function Genres(props) {
+export default function Genres() {
    const { genreID } = useParams();
    const splitGenre = genreID.split("-");
    const currentGenreName = splitGenre.slice(1).join(" ");
-   // const query = useQueryParams(useLocation().search);
    const [movies, setMovies] = useState([]);
    const [genreList, setGenreList] = useState([]);
    const [genreChange, setGenreChange] = useState(splitGenre[0]);
