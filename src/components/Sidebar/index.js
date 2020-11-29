@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import * as Icon from 'react-feather';
 
 export default function Sidebar({ navigation, favoriteTotal }) {
    const location = useLocation();
@@ -24,7 +25,11 @@ export default function Sidebar({ navigation, favoriteTotal }) {
    return (
       <aside>
          <nav className="sidebar-wrapper">
-            <div className="sidebar-logo">Logo</div>
+            <div className="sidebar-logo">
+               <div className="movie-logo">
+                  <Icon.Play />
+               </div>
+            </div>
             <ul className="sidebar-menu">
                {renderedSideMenu}
             </ul>

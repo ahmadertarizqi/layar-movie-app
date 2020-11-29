@@ -13,6 +13,16 @@ aside {
 .sidebar {
    &-logo {
       height: 65px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(88, 52, 187);
+
+      .movie-logo {
+         line-height: 1;
+         padding: 10px 18px;
+         color: #fff;
+      }
    }
 
    &-wrapper {}
@@ -20,6 +30,7 @@ aside {
    &-menu {
       list-style: none;
       padding-left: 0;
+      padding-top: 15px;
 
       &-item > a {
          color: $dark-text-color;
@@ -54,11 +65,14 @@ aside {
             border: 1px solid #495c6e;
             font-weight: 600;
          }
+
+         &:hover {
+            background-color: #ffffff1a;
+         }
       }
 
       &-item.is-active {
          > a {
-            background-color: #ffffff1a;
             color: #fff;
          }
       }
