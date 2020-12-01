@@ -46,7 +46,7 @@ export default function TrendingMovieSection({ movies, timeCategory, onSelectCha
                ))}
             </div>
 
-            <Link to="/movies" className="button btn-view-all">View All Movie</Link>
+            <Link to="/movies" className="button is-customized btn-view-all">View All Movie</Link>
          </CardLayout>
       </React.Fragment>
    )

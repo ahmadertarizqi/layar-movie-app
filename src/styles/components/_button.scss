@@ -1,0 +1,18 @@
+.button {
+   &.is-customized {
+      background-color: transparent;
+      border-width: 2px;
+      color: #ffffffbd;
+      border-color: #ffffffbd;
+      transition: all 0.3s;
+
+      &:hover {
+         background-color: #ffffffbd;
+         color: $dark-color-500;
+
+         > svg {
+            stroke: $dark-color;
+         }
+      }
+   }
+}

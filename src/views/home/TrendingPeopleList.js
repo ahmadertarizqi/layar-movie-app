@@ -27,7 +27,7 @@ export default function TrendingPeopleList({ peoples }) {
                ))}
             </div>
 
-            <Link to="/peoples" className="button btn-view-all">View All People</Link>
+            <Link to="/peoples" className="button is-customized btn-view-all">View All People</Link>
          </CardLayout>
       </React.Fragment>
    )

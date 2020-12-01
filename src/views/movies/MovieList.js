@@ -29,7 +29,7 @@ export default function MovieList({
             </div>
             <div style={{ textAlign: 'center' }}>
                <button 
-                  className={`button ${isLoadMore ? 'is-loading' : ''}`} 
+                  className={`button is-outlined ${isLoadMore ? 'is-loading' : ''}`} 
                   onClick={() => loadMoreMovies()}
                >
                   {isLoadMore ? 'Loading...' : 'Load More'}

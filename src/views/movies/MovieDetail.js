@@ -12,6 +12,7 @@ import CardLayout from 'components/CardLayout';
 import { toast } from 'react-toastify';
 
 import { FavoriteContext } from 'store/FavoriteContext';
+import Button from 'components/Button';
 
 export default function MovieDetail(props) {
    const { movieID } = useParams();
@@ -216,18 +217,19 @@ export default function MovieDetail(props) {
                            <Icon.Clock className="symbol" /> <span>{timeConvert(movieDetail.runtime)}</span>
                         </div>
                         <div className="item">
-                           <button 
-                              className="button is-rounded" 
+                           <Button
                               onClick={() => { 
                                  setIsOpen(true); 
                                  document.documentElement.style.overflow = 'hidden';
                               }}
                            >
-                              <Icon.Play fill="#002068" color="#002068" /> Watch Trailer
-                           </button>
+                              <Icon.Play color="#fff" className="mr-2" /> Watch Trailer
+                           </Button>
                         </div>
                         <div className="item">
-                           <button onClick={() => addToFavoriteHandler(movieDetail)}>Add To Favorites</button>
+                           <Button onClick={() => addToFavoriteHandler(movieDetail)}>
+                              <Icon.Heart color="#fff" className="mr-2" /> Favorites
+                           </Button>
                         </div>
                      </div>
                      <h5 className="text-title is-size-5">Overview</h5>

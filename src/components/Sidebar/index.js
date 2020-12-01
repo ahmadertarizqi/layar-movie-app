@@ -27,7 +27,7 @@ export default function Sidebar({ navigation, favoriteTotal }) {
          <nav className="sidebar-wrapper">
             <div className="sidebar-logo">
                <div className="movie-logo">
-                  <Icon.Play />
+                  <Icon.Play size={27} />
                </div>
             </div>
             <ul className="sidebar-menu">

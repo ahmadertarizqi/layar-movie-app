@@ -7,6 +7,8 @@ import { MoviePoster } from 'components/Poster';
 import { FavoriteContext } from 'store/FavoriteContext';
 import { PEOPLE_CONSTANT } from 'contants';
 import { toast } from 'react-toastify';
+import * as Icon from 'react-feather';
+import Button from 'components/Button';
 
 export default function PeopleDetail() {
    const { peopleID } = useParams();
@@ -93,8 +95,13 @@ export default function PeopleDetail() {
                   </div>
                </div>
                <div className="column is-9">
-                  <h3 className="text-title is-size-3 mb-3" style={{ color: '#fff'}}>{people.name}</h3>
-                  <button onClick={() => addToFavoriteHandler(people)}>Add To Favorites</button>
+                  <div className="m-flex space-between">
+                     <h3 className="text-title is-size-3 mb-3" style={{ color: '#fff'}}>{people.name}</h3>
+                     <Button onClick={() => addToFavoriteHandler(people)}>
+                        <Icon.Heart color="#fff" className="mr-2" /> Favorites
+                     </Button>
+                  </div>
+
                   <div className="people-biography">
                      <h5 className="is-size-5">Biography</h5>
                      <p>

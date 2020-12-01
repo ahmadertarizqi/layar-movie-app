@@ -26,20 +26,23 @@ function Favorites() {
                            poster={movie.poster_path}
                            title={movie.title}
                            releaseDate={movie.release_date}
-                           rating={movie.vote_average}
+                           rating={movie.rating}
                         />
-                        <button onClick={() => {
-                           deleteFromFavorite(MOVIE_CONSTANT, movie.id);
-                           toast.info("Movie Favorite Deleted",{
-                              position: "top-right",
-                              autoClose: 2500,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              pauseOnHover: true,
-                              draggable: true,
-                              progress: undefined,
-                           });
-                        }}>Delete</button>
+                        <button 
+                           onClick={() => {
+                              deleteFromFavorite(MOVIE_CONSTANT, movie.id);
+                              toast.info("Movie Favorite Deleted",{
+                                 position: "top-right",
+                                 autoClose: 2500,
+                                 hideProgressBar: false,
+                                 closeOnClick: true,
+                                 pauseOnHover: true,
+                                 draggable: true,
+                                 progress: undefined,
+                              });
+                           }}
+                           className="button is-small is-info is-outlined mt-3"
+                        >Delete</button>
                      </div>
                   ))}
                </div>
@@ -64,18 +67,21 @@ function Favorites() {
                               name={people.name}
                            />
                         </Link>
-                        <button onClick={() => {
-                           deleteFromFavorite(PEOPLE_CONSTANT, people.id);
-                           toast.info("People Favorite Deleted",{
-                              position: "top-right",
-                              autoClose: 2500,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              pauseOnHover: true,
-                              draggable: true,
-                              progress: undefined,
-                           });
-                        }}>Delete</button>
+                        <button 
+                           onClick={() => {
+                              deleteFromFavorite(PEOPLE_CONSTANT, people.id);
+                              toast.info("People Favorite Deleted",{
+                                 position: "top-right",
+                                 autoClose: 2500,
+                                 hideProgressBar: false,
+                                 closeOnClick: true,
+                                 pauseOnHover: true,
+                                 draggable: true,
+                                 progress: undefined,
+                              });
+                           }}
+                           className="button is-small is-info is-outlined mt-3"
+                        > Delete </button>
                      </div>
                   ))}
                </div>
