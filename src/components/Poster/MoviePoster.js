@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom';
 import * as Icon from 'react-feather';
 import dayjs from 'dayjs';
 import { getImage } from 'utils';
+import ImgPlaceholder from 'assets/image-placeholder.png';
 
 export default function MoviePoster({ detailId, poster, title, releaseDate, rating }) {
    return (
       <div className="card-poster">
          <Link to={`/movie/${detailId}`} className="anchor-link">
-            <img src={`${getImage('movie') + poster}`} className="img-poster" loading="lazy" alt={title} />
+            {poster 
+               ? <img src={`${getImage('movie') + poster}`} className="img-poster" loading="lazy" alt={title} />
+               : <img src={ImgPlaceholder} className="img-poster" loading="lazy" alt="img-placeholder" />
+            }
             <div className="poster-info-wrapper">
                <h5 className="is-size-6 cp-title">{title}</h5>
                <div className="poster-info">
