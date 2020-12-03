@@ -31,7 +31,7 @@ function Favorites() {
                         <button 
                            onClick={() => {
                               deleteFromFavorite(MOVIE_CONSTANT, movie.id);
-                              toast.info("Movie Favorite Deleted",{
+                              toast.info("Movie removed from favorite list",{
                                  position: "top-right",
                                  autoClose: 2500,
                                  hideProgressBar: false,
@@ -70,7 +70,7 @@ function Favorites() {
                         <button 
                            onClick={() => {
                               deleteFromFavorite(PEOPLE_CONSTANT, people.id);
-                              toast.info("People Favorite Deleted",{
+                              toast.info("Person removed from favorite list",{
                                  position: "top-right",
                                  autoClose: 2500,
                                  hideProgressBar: false,

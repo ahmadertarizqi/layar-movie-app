@@ -45,7 +45,7 @@ export default function MovieDetail(props) {
       // check if exist from localstorage
       if(findIdx === -1) {
          addToFavorite(MOVIE_CONSTANT, payload);
-         toast.info("Added movie to favorites list",{
+         toast.info("Movie added to favorite list",{
             position: "top-right",
             autoClose: 3500,
             hideProgressBar: false,
@@ -55,7 +55,7 @@ export default function MovieDetail(props) {
             progress: undefined,
          });
       } else {
-         toast.info("Movie is already", {
+         toast.info("Movie is already in favorite list", {
             position: "top-right",
             autoClose: 3500,
             hideProgressBar: false,

@@ -36,7 +36,7 @@ export default function PeopleDetail() {
       const findIdx = peopleArr.findIndex(people => people.id === payload.id);
       if(findIdx === -1) {
          addToFavorite(PEOPLE_CONSTANT, payload);
-         toast.info("Added people to favorites list",{
+         toast.info("Person added to favorite list",{
             position: "top-right",
             autoClose: 3500,
             hideProgressBar: false,
@@ -46,7 +46,7 @@ export default function PeopleDetail() {
             progress: undefined,
          });
       } else {
-         toast.info("People is already",{
+         toast.info("Person is already in favorite list",{
             position: "top-right",
             autoClose: 3500,
             hideProgressBar: false,
