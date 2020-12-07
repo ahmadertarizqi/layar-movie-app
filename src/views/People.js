@@ -3,6 +3,7 @@ import { PeoplePoster } from 'components/Poster';
 import API from 'services/movies';
 import CardLayout from 'components/CardLayout';
 import { Link } from 'react-router-dom';
+import Loading from 'components/Loading';
 
 export default function People() {
    const [peoples, setPeoples] = useState([]);
@@ -24,7 +25,14 @@ export default function People() {
       setNumberPage(prevPage => prevPage + 1);
    };
 
-   if(!peoples || peoples.length < 1) return <div>Loading....</div>
+   if(!peoples || peoples.length < 1) {
+      return (
+         <div className="loading-wrapper-centered">
+            <Loading width={50} height={50} />
+            <h4 className="has-text-white">Loading...</h4>
+         </div>
+      )
+   }
 
    return (
       <div className="movies-wrapper">

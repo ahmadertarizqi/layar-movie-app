@@ -1,6 +1,7 @@
 import React from 'react';
 import { MoviePoster } from 'components/Poster';
 import CardLayout from 'components/CardLayout';
+import Loading from 'components/Loading';
 
 export default function MovieList({
    title,
@@ -9,7 +10,14 @@ export default function MovieList({
    loadMoreMovies
 }) {
 
-   if(!movies || movies.length < 1) return <div>Loading...</div>
+   if(!movies || movies.length < 1) {
+      return (
+         <div className="loading-wrapper-centered">
+            <Loading width={50} height={50} />
+            <h4 className="has-text-white">Loading...</h4>
+         </div>
+      )
+   }
 
    return (
       <React.Fragment>

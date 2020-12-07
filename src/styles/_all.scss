@@ -177,3 +177,24 @@
       align-items: center;
    }
 }
+
+.loading-wrapper-centered {
+   text-align: center;
+   padding: 145px 0;
+}
+
+.animation-spinner {
+   animation-name: spinner;
+   animation-duration: 1200ms;
+   animation-iteration-count: infinite;
+   animation-timing-function: linear;
+}
+
+@-webkit-keyframes spinner {
+   from { -webkit-transform: rotate(0deg); }
+   to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spinner {
+   from { transform:rotate(0deg); }
+   to { transform:rotate(360deg); }
+}

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import CardLayout from 'components/CardLayout';
 import { MoviePoster } from 'components/Poster'
 import API from 'services/movies';
+import Loading from 'components/Loading';
 
 export default function Genres() {
    const { genreID } = useParams();
@@ -65,7 +66,14 @@ export default function Genres() {
       setNumberPage((prevNumberPage) => prevNumberPage + 1);
    };
 
-   if(!movies || movies.length < 1) return <div>Loading....</div>
+   if(!movies || movies.length < 1) {
+      return (
+         <div className="loading-wrapper-centered">
+            <Loading width={50} height={50} />
+            <h4 className="has-text-white">Loading...</h4>
+         </div>
+      )
+   }
 
    return (
       <div className="movies-wrapper">

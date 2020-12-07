@@ -9,6 +9,7 @@ import { PEOPLE_CONSTANT } from 'contants';
 import { toast } from 'react-toastify';
 import * as Icon from 'react-feather';
 import Button from 'components/Button';
+import Loading from 'components/Loading';
 
 export default function PeopleDetail() {
    const { peopleID } = useParams();
@@ -58,7 +59,14 @@ export default function PeopleDetail() {
       }
    };
 
-   if(!people) return <div>Loading...</div>
+   if(!people) {
+      return (
+         <div className="loading-wrapper-centered">
+            <Loading width={50} height={50} />
+            <h4 className="has-text-white">Loading...</h4>
+         </div>
+      )
+   }
 
    return (
       <div className="people-detail">

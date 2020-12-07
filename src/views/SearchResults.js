@@ -4,6 +4,7 @@ import CardLayout from 'components/CardLayout';
 import { MoviePoster, PeoplePoster } from 'components/Poster';
 import { useQueryParams } from 'utils';
 import API from 'services/movies';
+import Loading from 'components/Loading';
 
 export default function SearchResults() {
    const [searchResults, setSearchResults] = useState([]);
@@ -20,7 +21,12 @@ export default function SearchResults() {
    }, [getParams]);
 
    if(!searchResults || searchResults.length < 1) {
-      return <div>Loading...</div>
+      return (
+         <div className="loading-wrapper-centered">
+            <Loading width={50} height={50} />
+            <h4 className="has-text-white">Loading...</h4>
+         </div>
+      )
    }
 
    return (

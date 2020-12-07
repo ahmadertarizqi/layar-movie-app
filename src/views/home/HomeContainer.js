@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import API from 'services/movies';
 import { Link } from 'react-router-dom';
-// import HomeBanner from 'components/HomeBanner';
 import { BoxGenre, BoxGenreItem } from 'components/BoxGenre';
 import TrendingMovieList from './TrendingMovieList';
 import TrendingPeopleList from './TrendingPeopleList';
+import Loading from 'components/Loading';
 
 export default function Browse() {
    const [genresMovie, setGenresMovie] = useState([]);
@@ -35,6 +35,15 @@ export default function Browse() {
    useEffect(() => {
       getTrendingMovie(timeCategory);
    }, [timeCategory]);
+
+   if(genresMovie.length < 1 || trendingMovie.length < 1 || trendingPeople.length < 1) {
+      return (
+         <div className="loading-wrapper-centered">
+            <Loading width={50} height={50} />
+            <h4 className="has-text-white">Loading...</h4>
+         </div>
+      )
+   }
 
    return (
       <div>

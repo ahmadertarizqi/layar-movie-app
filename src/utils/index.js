@@ -74,3 +74,7 @@ export const truncateString = (text, limit, afterText) => {
    }
    return content;
 };
+
+export const getRandomNumber = (min, max) => {
+   return Math.floor(Math.random() * (max - min) + min);
+};
