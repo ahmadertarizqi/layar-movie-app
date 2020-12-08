@@ -13,10 +13,11 @@ import { toast } from 'react-toastify';
 
 import { FavoriteContext } from 'store/FavoriteContext';
 import Button from 'components/Button';
+import Loading from 'components/Loading';
 
 export default function MovieDetail(props) {
    const { movieID } = useParams();
-   const [movieDetail, setMovieDetail] = useState({});
+   const [movieDetail, setMovieDetail] = useState(null);
    const [isOpen, setIsOpen] = useState(false);
 
    const favoriteStore = useContext(FavoriteContext);
@@ -66,6 +67,15 @@ export default function MovieDetail(props) {
          });
       }
    };
+
+   if(!movieDetail) {
+      return (
+         <div className="loading-wrapper-centered">
+            <Loading width={50} height={50} />
+            <h4 className="has-text-white">Loading...</h4>
+         </div>
+      )
+   }
 
    const renderCredits = () => {
       if (movieDetail.credits) {
