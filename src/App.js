@@ -22,7 +22,13 @@ export default function App() {
   }
   
   const onSearch = (keyword) => {
-    history.push(`/search?query=${keyword}`);
+    history.push({
+      pathname: '/search',
+      search: `?query=${keyword}`,
+      state: {
+        fromSearchSubmit: true
+      }
+    });
   };
 
   return (

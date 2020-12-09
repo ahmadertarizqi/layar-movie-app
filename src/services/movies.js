@@ -94,13 +94,14 @@ async function getPeople(dataID) {
    return response.data;
 }
 
-async function getSearch(keyword) {
+async function getSearch(keyword, pageNumber = 1) {
    if(keyword) {
       const response = await getData(`${apiURL}/search/multi`, {
          params: {
             api_key: apiKEY,
             query: keyword,
             include_adult: false,
+            page: pageNumber
          }
       });
       return response.data;

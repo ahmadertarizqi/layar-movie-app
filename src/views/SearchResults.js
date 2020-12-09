@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import CardLayout from 'components/CardLayout';
 import { MoviePoster, PeoplePoster } from 'components/Poster';
 import { useQueryParams } from 'utils';
@@ -7,18 +7,34 @@ import API from 'services/movies';
 import Loading from 'components/Loading';
 
 export default function SearchResults() {
+   const history = useHistory();
+   const { location } = history;
    const [searchResults, setSearchResults] = useState([]);
-   const queryParams = useQueryParams(useLocation().search);
-   const getParams = queryParams.get("query");
+   const [pageNumber, setPageNumber] = useState(1);
+   const [isLoadMore, setLoadMore] = useState(false);
+   const getParams = useQueryParams(useLocation().search).get("query");
+
+   // resetting
+   useEffect(() => {
+      if(location.state.fromSearchSubmit) {
+         setSearchResults([]);
+      }
+   }, [location]);
 
    useEffect(() => {
       const getSearch = async () => {
-         const response = await API.getSearch(getParams);
-         setSearchResults(response.results);
+         setLoadMore(true);
+         const response = await API.getSearch(getParams, pageNumber);
+         setSearchResults(prevState => [...prevState, ...response.results]);
+         setLoadMore(false);
       };
 
       getSearch();
-   }, [getParams]);
+   }, [pageNumber, getParams]);
+
+   const loadMoreSearchResults = () => {
+      setPageNumber(prevState => prevState + 1);
+   };
 
    if(!searchResults || searchResults.length < 1) {
       return (
@@ -63,6 +79,13 @@ export default function SearchResults() {
                         return '';
                   }
                })}
+            </div>
+
+            <div style={{ textAlign: 'center' }}>
+               <button className={`button ${isLoadMore ? 'is-loading' : ''}`} 
+                  onClick={() => loadMoreSearchResults()}>
+                  {isLoadMore ? 'Loading...' : 'Load More'}
+               </button>
             </div>
          </CardLayout>
       </div>

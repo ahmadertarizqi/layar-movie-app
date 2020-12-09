@@ -25,7 +25,7 @@ export default function Navbar({ toggleSidebar, searchSubmit }) {
                         type="text"
                         value={inputValue}
                         onChange={(ev) => setInputValue(ev.target.value)}
-                        placeholder="Search for a movie, tv show, person..." />
+                        placeholder="Search for a movie, or person..." />
                   </div>
                </form>
             </div>
