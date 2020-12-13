@@ -18,19 +18,24 @@ export default function SearchResults() {
    useEffect(() => {
       if(location.state.fromSearchSubmit) {
          setSearchResults([]);
+         setPageNumber(1);
       }
    }, [location]);
 
    useEffect(() => {
       const getSearch = async () => {
-         setLoadMore(true);
-         const response = await API.getSearch(getParams, pageNumber);
-         setSearchResults(prevState => [...prevState, ...response.results]);
-         setLoadMore(false);
+         try {
+            setLoadMore(true);
+            const response = await API.getSearch(getParams, pageNumber);
+            setSearchResults(prevState => [...prevState, ...response.results]);
+            setLoadMore(false);
+         } catch (error) {
+            throw new Error(error);
+         }
       };
-
-      getSearch();
-   }, [pageNumber, getParams]);
+      getSearch(getParams, pageNumber);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [pageNumber]);
 
    const loadMoreSearchResults = () => {
       setPageNumber(prevState => prevState + 1);
