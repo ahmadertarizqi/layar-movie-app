@@ -11,6 +11,7 @@ export default function Browse() {
    const [trendingMovie, setTrendingMovie] = useState([]);
    const [trendingPeople, setTrendingPeople] = useState([]);
    const [timeCategory, setTimeCategory] = useState('day');
+   const [isLoading, setIsLoading] = useState(false);
 
    useEffect(() => {
       const getGenre = async () => {
@@ -28,8 +29,10 @@ export default function Browse() {
    }, []);
 
    const getTrendingMovie = async (time) => {
+      setIsLoading(true);
       const response = await API.getTrending('movie', time);
       setTrendingMovie(response.results);
+      setIsLoading(false);
    };
 
    useEffect(() => {
@@ -66,7 +69,8 @@ export default function Browse() {
                <TrendingMovieList 
                   movies={trendingMovie} 
                   timeCategory={timeCategory}
-                  onSelectChange={setTimeCategory} 
+                  onSelectChange={setTimeCategory}
+                  isLoading={isLoading}
                />
             </div>
             <div className="column is-4">

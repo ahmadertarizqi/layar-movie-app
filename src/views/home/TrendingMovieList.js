@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import CardLayout from 'components/CardLayout';
 import { MoviePoster } from 'components/Poster';
 import { Link } from 'react-router-dom';
+import Loading from 'components/Loading';
 
-export default function TrendingMovieSection({ movies, timeCategory, onSelectChange }) {
+export default function TrendingMovieSection({ movies, timeCategory, onSelectChange, isLoading }) {
    const [limit] = useState(12);
 
    let strTimeCategory;
@@ -22,6 +23,7 @@ export default function TrendingMovieSection({ movies, timeCategory, onSelectCha
    return (
       <React.Fragment>
          <CardLayout
+            className="is-relative"
             title={`Trending Movie ${strTimeCategory}`}
             withAction={
                <div className="select select-customized">
@@ -32,6 +34,13 @@ export default function TrendingMovieSection({ movies, timeCategory, onSelectCha
                </div>
             }
          >
+            {isLoading ? 
+               <div className="box-loading">
+                  <Loading width={50} height={50} />
+                  <h4 className="has-text-white">Loading...</h4>
+               </div>
+               : null
+            }
             <div className="columns is-multiline">
                {movies.slice(0, limit).map(movie => (
                   <div className="column is-one-third" key={movie.id}>
