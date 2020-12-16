@@ -37,9 +37,9 @@ export default function People() {
    return (
       <div className="movies-wrapper">
          <CardLayout title="Popular People">
-            <div className="columns is-multiline">
+            <div className="columns is-multiline is-mobile">
                {peoples.map(people => (
-                  <div key={people.id} className="column is-2">
+                  <div key={people.id} className="column is-one-third-mobile is-2-desktop">
                      <Link to={`/people/${people.id}`} className="anchor-link">
                         <PeoplePoster 
                            peopleID={people.id}

@@ -22,9 +22,9 @@ export default function MovieList({
    return (
       <React.Fragment>
          <CardLayout title={title}>
-            <div className="columns is-multiline">
+            <div className="columns is-multiline is-mobile">
                {movies.map((movie, idx) => (
-                  <div className="column is-one-fifth is-6-mobile" key={idx}>
+                  <div className="column is-6-mobile is-one-third-tablet is-one-fifth-desktop " key={idx}>
                      <MoviePoster
                         detailId={movie.id}
                         poster={movie.poster_path}

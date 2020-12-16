@@ -153,9 +153,9 @@ export default function MovieDetail(props) {
          return (
             <CardLayout title="Similar Movies">
                <div className="row-overflow-horizontal">
-                  <div className="columns">
+                  <div className="columns is-mobile">
                      {movies.map(movie => (
-                        <div className="column is-one-fifth" key={movie.id}>
+                        <div className="column is-half-mobile is-one-fifth-desktop" key={movie.id}>
                            <MoviePoster 
                               detailId={movie.id}
                               poster={movie.poster_path}

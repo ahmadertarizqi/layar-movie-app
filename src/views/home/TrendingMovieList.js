@@ -41,9 +41,9 @@ export default function TrendingMovieSection({ movies, timeCategory, onSelectCha
                </div>
                : null
             }
-            <div className="columns is-multiline">
+            <div className="columns is-multiline is-mobile">
                {movies.slice(0, limit).map(movie => (
-                  <div className="column is-one-third" key={movie.id}>
+                  <div className="column is-half-mobile is-one-third-desktop" key={movie.id}>
                      <MoviePoster
                         detailId={movie.id}
                         poster={movie.poster_path}

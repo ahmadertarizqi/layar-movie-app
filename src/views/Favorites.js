@@ -18,9 +18,9 @@ function Favorites() {
       <div>
          <CardLayout title={`Movie Favorites [${movieFavorites.length}]`}>
             {!movieFavorites.length < 1 ? 
-               <div className="columns is-multiline">
+               <div className="columns is-multiline is-mobile">
                   {movieFavorites.map(movie => (
-                     <div className="column is-one-fifth" key={movie.id}>
+                     <div className="column is-half-mobile is-one-fifth-desktop" key={movie.id}>
                         <MoviePoster 
                            detailId={movie.id}
                            poster={movie.poster_path}
@@ -57,9 +57,9 @@ function Favorites() {
 
          <CardLayout title={`People Favorites [${peopleFavorites.length}]`}>
             {!peopleFavorites.length < 1 ?
-               <div className="columns is-multiline">
+               <div className="columns is-multiline is-mobile">
                   {peopleFavorites.map(people => (
-                     <div className="column is-2" key={people.id}>
+                     <div className="column is-half-mobile is-2-desktop" key={people.id}>
                         <Link to={`/people/${people.id}`} className="anchor-link">
                            <PeoplePoster 
                               peopleID={people.id}
