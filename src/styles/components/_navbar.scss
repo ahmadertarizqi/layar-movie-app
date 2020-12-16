@@ -61,6 +61,16 @@ body.sidebar-closed header {
             transform: translateY(-50%);
             color: $dark-text-color;
          }
+
+         .icon-clear {
+            position: absolute;
+            z-index: 1;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: $dark-text-color;
+         }
       }
    }
 }
