@@ -91,9 +91,9 @@ export default function Genres() {
                </div>
             }
          >
-            <div className="columns is-multiline">
+            <div className="columns is-multiline is-mobile">
                {movies.map(movie => (
-                  <div className="column is-one-fifth" key={movie.id}>
+                  <div className="column is-half-mobile is-one-third-tablet is-one-fifth-desktop" key={movie.id}>
                      <MoviePoster
                         detailId={movie.id}
                         poster={movie.poster_path}
