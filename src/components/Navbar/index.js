@@ -3,16 +3,11 @@ import * as Icon from 'react-feather';
 
 export default function Navbar({ toggleSidebar, searchSubmit }) {
    const [inputValue, setInputValue] = useState('');
-   const [isDeleteTerm, setDeleteTerm] = useState(false);
    
    const onFormSubmit = (ev) => {
       ev.preventDefault();
       searchSubmit(inputValue);
-   };
-
-   const onDeleteTermInput = () => {
       setInputValue('');
-      setDeleteTerm(false);
    };
 
    return (
@@ -29,16 +24,8 @@ export default function Navbar({ toggleSidebar, searchSubmit }) {
                         className="input" 
                         type="text"
                         value={inputValue}
-                        onChange={(ev) => {
-                           setInputValue(ev.target.value);
-                           setDeleteTerm(true);
-                        }}
-                        placeholder="Search for a movie, or person..." 
-                     />
-                     {isDeleteTerm 
-                        ? <Icon.XCircle onClick={onDeleteTermInput} className="icon-clear" />
-                        : null
-                     }
+                        onChange={(ev) => setInputValue(ev.target.value)}
+                        placeholder="Search for a movie, or person..." />
                   </div>
                </form>
             </div>
