@@ -78,3 +78,14 @@ export const truncateString = (text, limit, afterText) => {
 export const getRandomNumber = (min, max) => {
    return Math.floor(Math.random() * (max - min) + min);
 };
+
+export const filterItems = (datas, criteria) => {
+   let filterArray = [];
+   datas.filter((data) => {
+      if(data.media_type !== criteria) {
+         filterArray.push(data);
+      }
+      return data;
+   });
+   return filterArray;
+};

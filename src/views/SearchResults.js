@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import CardLayout from 'components/CardLayout';
 import { MoviePoster, PeoplePoster } from 'components/Poster';
-import { useQueryParams } from 'utils';
+import { filterItems, useQueryParams } from 'utils';
 import API from 'services/movies';
 import Loading from 'components/Loading';
 
@@ -27,7 +27,8 @@ export default function SearchResults() {
          try {
             setLoadMore(true);
             const response = await API.getSearch(getParams, pageNumber);
-            setSearchResults(prevState => [...prevState, ...response.results]);
+            const filterItemsResults = filterItems(response.results, 'tv');
+            setSearchResults(prevState => [...prevState, ...filterItemsResults]);
             setLoadMore(false);
          } catch (error) {
             throw new Error(error);
