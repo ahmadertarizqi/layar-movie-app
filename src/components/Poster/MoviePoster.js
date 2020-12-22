@@ -9,9 +9,14 @@ export default function MoviePoster({ detailId, poster, title, releaseDate, rati
    return (
       <div className="card-poster">
          <Link to={`/movie/${detailId}`} className="anchor-link">
-            {poster 
-               ? <img src={`${getImage('movie') + poster}`} className="img-poster" loading="lazy" alt={title} />
-               : <img src={ImgPlaceholder} className="img-poster" loading="lazy" alt="img-placeholder" />
+            {poster ? 
+               <figure className="image is-2by3">
+                  <img src={`${getImage('movie') + poster}`} className="img-poster" loading="lazy" alt={title} />
+               </figure>
+               : 
+               <figure className="image is-2by3">
+                  <img src={ImgPlaceholder} className="img-poster" loading="lazy" alt="img-placeholder" />
+               </figure>
             }
             <div className="poster-info-wrapper">
                <h5 className="is-size-6 cp-title">{title}</h5>

@@ -180,8 +180,6 @@ export default function MovieDetail(props) {
                <div className="trailer-preview">
                   <iframe 
                      title={trailer[0].name} 
-                     width="100%" 
-                     height="500"
                      src={`${youtubeEmbed}/${trailer[0].key}?autoplay=${isOpen ? 1 : 0}`}
                      allowFullScreen
                   ></iframe>

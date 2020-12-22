@@ -132,10 +132,10 @@ export default function PeopleDetail() {
 
                   <div className="block-section-biography">
                      <h5 className="is-size-5 mb-3">Starred In</h5>
-                     <div className="columns is-multiline">
+                     <div className="columns is-multiline is-mobile">
                         {people.movie_credits ? 
                            people.movie_credits.cast.map(val => (
-                              <div className="column is-one-quarter is-6-mobile" key={val.id}>
+                              <div className="column is-half-mobile is-one-quarter-desktop" key={val.id}>
                                  <MoviePoster 
                                     detailId={val.id}
                                     poster={val.poster_path}
