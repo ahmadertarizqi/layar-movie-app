@@ -30,4 +30,4 @@ Make sure have installed [NodeJS](https://nodejs.org/).
    ```
 
 ## License
-MIT Copyright &copy; 2020 - Ahmaderta Rizqi 
+[MIT](https://github.com/ahmadertarizqi/layar-movie-app/blob/master/LICENSE) Copyright &copy; 2020 - Ahmaderta Rizqi 
