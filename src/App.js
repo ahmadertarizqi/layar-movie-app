@@ -8,6 +8,8 @@ import 'styles/main.scss';
 
 import Routes from './routes';
 import { FavoriteContext } from 'store/FavoriteContext';
+import { Helmet } from 'react-helmet';
+import FaviconIcon from 'assets/logo-icon.png';
 
 export default function App() {
   const favorites = useContext(FavoriteContext);
@@ -33,6 +35,18 @@ export default function App() {
 
   return (
     <React.Fragment>
+      <Helmet
+        title="Layar Movie"
+        link={[
+          {"rel": "icon", "href": `${FaviconIcon}`, "type": "image/x-icon"}
+        ]}
+        meta={[
+          {"charset": "utf-8"},
+          {"name": "theme-color", "content": "#34495e"},
+          {"name": "description", "content": "Layar Movie - TMDB"},
+          {"name": "author", "content": "Ahmaderta Rizqi"}
+        ]}
+      />
       <Sidebar navigation={NavigationRoute} favoriteTotal={movieFavorites.length + peopleFavorites.length} />
       <div className="main-wrapper">
         <Navbar toggleSidebar={toggleSidebar} searchSubmit={onSearch} />
