@@ -4,7 +4,7 @@
   "author": "Ahmaderta Rizqi, <ahmadertariz@gmail.com>",
   "private": true,
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "dayjs": "^1.8.36",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
